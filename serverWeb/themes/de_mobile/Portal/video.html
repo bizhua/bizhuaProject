@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{$video_title}-{$site_name}</title>
+    <meta property="qc:admins" content="77103107776553571676375">
+    <meta property="wb:webmaster" content="c4f857219bfae3cb">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="msapplication-TileImage" content="/wap/img/touch/apple-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#222222">
+    <link rel="stylesheet" href="/jstest/livedemo_files/normalize.css">
+    <link rel="stylesheet" href="/jstest/livedemo_files/main.css">
+</head>
+<script>
+var vid = 'app{$tid}';
+</script>
+<body>
+    <div class="main-container">
+        <div class="content-contianer">
+            <div class="middle-layer">
+                <h4 class="mytitle" style="background:#E73D3D;color:ffffff;">思思直播-{$video_title}</h4>
+                <div class="content-inner">
+                    <div class="video-wrap clearfix">
+                        <div id="video" style="height:185px;z-index:0;width:100%">
+                              <video  data-setup='{}' preload="none" controls="controls" width="100%" height="100%" poster="{$smeta_mobile|default='/jstest/post.jpg'}" src="{:sp_get_asset_upload_path($smeta)}">
+                                <source src="{:sp_get_asset_upload_path($smeta)}" type='video/mp4' />
+                              </video>
+                        </div>
+                    </div>
+                    <ul class="course-tab">
+                        <li class="curr" style="width:100%;color: #E73D3D; border-bottom: 2px solid #E73D3D;">视频介绍</li>
+                       <!--  <li class="">课程信息</li> -->
+                    </ul>
+                    <div class="course-container" style="background-color: #FFF;">
+{$video_description}
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Add your site or application content here -->
+    <script src="/jstest/livedemo_files/zepto.min.js"></script>
+    <script type="text/javascript" src="/jstest/jquery-1.11.1.min.js"></script>
+    <script src="/jstest/livedemo_files/fastclick-1.0.6.min.js"></script>
+    <script src="/jstest/livedemo_files/common.js"></script>
+    <script src="/jstest/livedemo_files/component.js"></script>
+    <script src="/jstest/livedemo_files/webjwplayer.js"></script>
+    <script src="/jstest/livedemo_files/learn.js"></script>
+
+    <script>
+    var pageInfo = {};
+    pageInfo.islogin = 1;
+    var course = course || {};
+    course.videoUrl = "";
+    course.imageUrl = "http://img.mukewang.com/55ea64dc0001197b06000338-280-160.jpg"
+    course.allowId = ""
+    $('.course-container').height($(window).height() - $('.course-container').position().top - 57);
+    </script>
+</body>
+
+</html>

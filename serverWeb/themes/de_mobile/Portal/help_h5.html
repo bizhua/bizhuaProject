@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+<style>
+*{margin:0;padding:0;}
+html,body,div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	color:#442204;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+.main{background:url(__TMPL__Public/images/h5/bg_help.png) center no-repeat;background-size: 100% 100%;overflow: scroll;}
+p.title {
+    padding: 10px 20px 5px 35px;
+    font-size: 14px;
+    background: url(__TMPL__Public/images/h5/bg_help_title.png) left no-repeat;
+    background-size: 20px;
+    background-position: 15px center;
+}
+p.content {
+    padding: 0 20px;
+    font-size: 12px;
+    color: #87715e;
+}
+hr {
+    margin: 10px 20px 0 20px;
+    background-color: #dcac81;
+    height: 1px;
+    border: none;
+}
+</style>
+</head>
+<header class="header" >
+<a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+<p class="title" style="background: none;">游戏帮助</p>
+</header>
+<body>
+<div class="main">
+<p class="title">抓一次需要多少金币?</p>
+<p class="content">每个机器价格不一定一致，机器封面及抓娃娃按钮上有标记当前机器所需金币数额，成功上机后会自动扣除相应金币。</p><hr />
+<p class="title">怎么知道我还有多少金币？</p>
+<p class="content">进入娃娃机后，屏幕右上方有您的金币余额显示。</p><hr />
+<p class="title">如何获得金币？</p>
+<p class="content">可以通过充值获得金币。<br />还可以通过分享邀请码给朋友，注册成功并输入您的邀请码后您和被邀请人都将获得一定数量的金币奖励。</p><hr />
+<p class="title">移动爪子最长时间多少？</p>
+<p class="content">移动爪子最长30s时间，超过时间会自动下爪。</p><hr />
+<p class="title">如何切换摄像头更好的切换娃娃？</p>
+<p class="content">成功上机后，操作面板右上方会出现摄像头切换按钮，点击即可切换。</p><hr />
+<p class="title">怎么判断抓到了娃娃？</p>
+<p class="content">娃娃成功掉进洞口才算抓到，其他情况均视为未抓到。</p><hr />
+<p class="title">哪里查看我抓到的娃娃？</p>
+<p class="content">首页左上角点击个人头像进入个人主页，可查看包括抓中的所有记录。</p><hr />
+<p class="title">抓到了怎么拿到娃娃或兑换金币？</p>
+<p class="content">抓到后可以在弹窗中立即处理，或之后到个人主页进行兑换金币或填写收件地址等操作，若选择寄娃娃，操作完成后工作人员会尽快安排发货。(2只以上包邮，否则将收取600金币作为邮费)</p><hr />
+<p class="title">游戏中出现故障/问题怎么办？</p>
+<p class="content">如游戏遇到问题，您可以在个人主页抓取记录，或设置内问题反馈里进行留言反馈，工作人员会根据实际情况做出相应处理。</p><hr />
+</div>
+
+
+</body>
+</html>

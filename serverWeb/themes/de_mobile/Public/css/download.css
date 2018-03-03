@@ -1,0 +1,91 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  min-height: 493px;
+  background: #a97e7e;
+  overflow: hidden;
+}
+.main .empty {
+  width: 100%;
+  height: 1px;
+}
+.main .cover {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 11;
+  display: none;
+}
+.main .cover .cover-banner {
+  width: 310px;
+  height: 369px;
+  position: absolute;
+  background: url("../images/mobile-cover.png");
+  background-size: cover;
+  left: 50%;
+  margin-left: -155px;
+}
+.main .cover .cover-btn {
+  width: 200px;
+  height: 75px;
+  position: absolute;
+  background: url("../images/mobile-cover-btn.png");
+  background-size: cover;
+  top: 366px;
+  left: 50%;
+  margin-left: -100px;
+}
+.main .main-bk {
+  width: 360px;
+  height: 100%;
+  background: url("../images/pic5.png");
+  background-size: cover;
+  position: absolute;
+}
+.main .pic-1 {
+  width: 242px;
+  height: 96px;
+  /*background: url("../images/pic1.png");*/
+  background-size: cover;
+  margin: 18px auto 0px;
+}
+.main .pic-2 {
+  width: 180px;
+  height: 180px;
+  /*background: url("../images/pic2.png");*/
+  background-size: cover;
+  margin: 4px auto 0px;
+}
+.main .down-android {
+  width: 233px;
+  height: 44px;
+  background: url("../images/pic3.png");
+  background-size: cover;
+  margin: 20px auto 0px;
+  z-index: 10;
+  position: relative;
+}
+.main .down-ios {
+  width: 233px;
+  height: 44px;
+  background: url("../images/pic4.png");
+  background-size: cover;
+  margin: 10px auto 0px;
+}
+.main .down-ios2 {
+  width: 233px;
+  height: 44px;
+  background: url("../images/pic6.png");
+  background-size: cover;
+  margin: 10px auto 0px;
+}

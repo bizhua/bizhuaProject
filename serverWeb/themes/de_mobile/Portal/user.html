@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <style>
+    .footer li.zhua i {
+        background: url(/themes/deerlive_mobile/Public/images/zhua_oncheck.png);
+        background-size: cover;
+    }
+    .footer li i.i3 {
+        background: url(/themes/deerlive_mobile/Public/images/bot3.png) 0 0px;
+        background-size: cover;
+    }
+    </style>
+</head>
+
+<body >
+<header class="header-user">
+<!-- <div class="photo"><img src="{$userinfo.avatar}"><span class="sex man"></span></div> -->
+<div class="photo"><img src="{$userinfo.avatar}"></div>
+<p class="name">{$userinfo.user_nicename}</p>
+ <p class="id">ID:{$userinfo.id}</p>
+ <a href="javascript:alert('此功能暂未开放')"><img class="yqm" src="__TMPL__Public/images/yqm.png"></a>
+</header>
+<section class="user-fcon">
+ <ul>
+  <li><a href="{:U('portal/index/order')}"><div class="photo"><img src="__TMPL__Public/images/fh-1.png"><em>{$num1}</em></div><p>待发货</p></a></li>
+  <li><a href="{:U('portal/index/order_ing')}"><div class="photo"><img src="__TMPL__Public/images/fh-2.png"><em>{$num2}</em></div><p>发货中</p></a></li>
+  <li><a href="{:U('portal/index/order_end')}"><div class="photo"><img src="__TMPL__Public/images/fh-3.png"><em>{$num3}</em></div><p>已送达</p></a></li>
+  <!-- <li><a href="javascript:alert('此功能暂未开放')"><div class="photo"><img src="__TMPL__Public/images/fh-1.png"><em>{$num1}</em></div><p>待发货</p></a></li>
+  <li><a href="javascript:alert('此功能暂未开放')"><div class="photo"><img src="__TMPL__Public/images/fh-2.png"><em>{$num2}</em></div><p>发货中</p></a></li>
+  <li><a href="javascript:alert('此功能暂未开放')"><div class="photo"><img src="__TMPL__Public/images/fh-3.png"><em>{$num3}</em></div><p>已送达</p></a></li> -->
+ </ul>
+
+</section>
+ <section class="usercon">
+  <ul>
+  <a href="{:U('portal/index/charge')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-1.png"></span><p>我的金币</p><span class="bi org">{$userinfo.balance}</span><span class="pay fr">充值</span></li></a>
+  <a href="{:U('portal/index/userRecord')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-2.png"></span><p>抓取记录</p><i class="fa fr fa-angle-right"></i></li></a>
+  <a href="{:U('portal/index/address')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-3.png"></span><p>配送地址</p><i class="fa fr fa-angle-right"></i></li></a>
+  </ul>
+  <ul>
+  <a href="javascript:alert('此功能暂未开放')"><li><span class="icon"><img src="__TMPL__Public/images/hy-4.png"></span><p>设置</p><i class="fa fr fa-angle-right"></i></li></a>
+  <!-- <a href="{:U('portal/index/setting')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-4.png"></span><p>设置</p><i class="fa fr fa-angle-right"></i></li></a> -->
+ </ul>
+ </section>
+ <tc_include file="Public:footer" />
+<script type="text/javascript">
+param={};
+param.token = TOKEN;
+param.id = {$userinfo.id};
+doPost('/Api/SiSi/getUserInfo',param,function(data){
+    if (data.code == 200) {
+      console.log(456);
+    };
+});
+</script>
+
+</body>
+</html>

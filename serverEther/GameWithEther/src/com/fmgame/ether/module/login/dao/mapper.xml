@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fmgame.ether.module.login.dao.IUserDAO">
+
+	<select id="getUsetById" parameterType="int"
+		resultType="com.fmgame.ether.module.login.dao.UserDBData">
+		select userId, password, powerType from t_user
+		where userId = #{userId}
+	</select>
+	<insert id="addUser" parameterType="com.fmgame.ether.module.login.dao.UserDBData">
+		INSERT INTO	
+		t_user(userId, password, powerType)
+		VALUES(#{userId}, #{password}, #{powerType})
+	</insert>
+</mapper>

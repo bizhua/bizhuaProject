@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<!-- begin CONSOLE -->
+	 
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out"/>
+		<param name="Threshold" value="ALL"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%C{1}.%M(%L)] %m%n"/>
+		</layout>
+	</appender>
+
+	
+	<!-- end CONSOLE -->
+	
+	<!-- begin exception -->
+	
+	<appender name="ExceptionLogger" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/exception.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%C{1}.%M(%L)] %m%n"/>
+        </layout>
+    </appender>
+    <logger name="com.fmgame.platform.util.ExceptionLogger">
+        <level value="INFO"/>
+        <appender-ref ref="ExceptionLogger"/>
+    </logger>
+
+	<!-- end exception -->
+	
+	<!-- begin base -->
+	
+	<!-- end base -->
+	<root>
+		<level value="ERROR"/>
+		<appender-ref ref="CONSOLE"/>
+	</root>
+</log4j:configuration>

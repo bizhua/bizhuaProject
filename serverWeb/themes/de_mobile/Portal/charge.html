@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <style>
+    *{margin:0;padding:0;}
+html,body,div{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  color:#442204;
+  font-size: 14px;
+  font-family: "Microsoft YaHei";
+}
+.main{background:url(__TMPL__Public/images/h5/bg_help.png) center no-repeat;background-size: 100% 100%;overflow: hidden;}
+.content{
+  padding:20px;
+  width:90%;
+}
+.yaoqingma{
+  display:none;
+  background: url(/themes/deerlive_mobile/Public/images/h5/bg_mycode_yaoqingma.png) left no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+    position: absolute;
+    margin: 0 auto;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+}
+.submit{
+  background: url(/themes/deerlive_mobile/Public/images/h5/bg_feedback_submit.png) left no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  margin: 20px 0 0 0;
+  padding-top: 16%;
+  height: 0;
+  position: relative;
+}
+.input_code{
+  border: 2px solid #e26f00;
+  width: 50%;
+  top: 55%;
+  left: 25%;
+  position: absolute;
+  outline: none;
+  text-align: center;
+  border-radius: 10px;
+}
+p.tishi {
+    position: absolute;
+    font-size: 20px;
+    width: 100%;
+}
+.palert2, .palert {
+  display:none;
+    z-index: 10;
+    position: absolute;
+    margin: 0 auto;
+    top: 20%;
+    left: 10%;
+    border: 5px solid #e26f00;
+    width: 80%;
+    background: #fefefe;
+    height: 300px;
+    border-radius: 10px;
+}
+.palert2 .p_txt, .palert .p_txt {
+font-size: 16px;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+    height: 30px;
+    color: #000;
+}
+.palert2 .p_btn, .palert .p_btn{
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    border-top: 1px solid #e26f00;
+    height: 50px;
+    line-height: 50px;
+}
+.palert .p_btn .p_close,.palert2 .p_btn .p_close {
+  padding:12px 80px 0px 80px;
+}
+[contenteditable = "true"], input, textarea {
+    -webkit-user-select: auto!important;
+    -khtml-user-select: auto!important;
+    -moz-user-select: auto!important;
+    -ms-user-select: auto!important;
+    -o-user-select: auto!important;
+    user-select: auto!important;
+}
+    .footer li.zhua i {
+        background: url(/themes/deerlive_mobile/Public/images/zhua_oncheck.png);
+        background-size: cover;
+    }
+    .footer li i.i2 {
+        background: url(/themes/deerlive_mobile/Public/images/bot2.png) 0 0px;
+        background-size: cover;
+    }
+
+
+.pinfo{
+  word-break:break-all;
+  text-align:left;
+  font-weight:bold;
+  margin: 10px 0 0 0;
+}
+
+.pvalue{
+  word-break:break-all;
+  text-align:left;
+  font-weight:bold;
+  margin: 10px 0 0 0;
+  color:#e26f00
+}
+
+.ptxt{
+  border: 2px solid #e26f00;
+  width: 80%;
+  position: absolute;
+  text-align: left;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+}
+
+.pbtn{
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  letter-spacing: 8px;
+  padding-left: 12px;
+  margin: 50px 0 0 0;
+  border: 1px solid #e26f00;
+  color: #fff;
+  text-shadow: 1px 1px 0.5px #22629B;
+  background: #e26f00
+}
+
+.info_section{
+  font-size: 15px;
+  padding: 20px 20px 20px 20px;
+  text-align: left;
+}
+</style>
+</head>
+
+<body >
+<header class="header">
+<a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+<p class="title">充值</p>
+</header>
+
+<section class="paycon">
+<div class="pay_my"><img class="tx fl" src="{$userinfo.avatar}"><p class="fl">我的金币</p><p class="bi fr">{$userinfo.balance}</p></div>
+</section>
+<section class="charge-list">
+   <ul>
+    <li>
+      <a href='javascript:showpop("ETH");'>        
+        <p class='tit'>ETH</p>
+        <img src='/data/upload/charge1.jpg'>
+      </a>
+    </li>
+    <li>
+      <a href='javascript:showpop("CPS");'>        
+        <p class='tit'>CPS</p>
+        <img src='/images/cps.jpg'>
+      </a>
+    </li>
+    <li>
+      <a href='javascript:showpop("BTC");'>        
+        <p class='tit'>BTC</p>
+        <img src='/data/upload/charge1.jpg'>
+      </a>
+    </li>
+    <li>
+      <a href='javascript:showpop("LTC");'>     
+        <p class='tit'>LTC</p>
+        <img src='/data/upload/charge1.jpg'>
+      </a>
+    </li>
+    <li>
+      <a href='javascript:showpop("ETC");'>       
+        <p class='tit'>ETC</p>
+        <img src='/data/upload/charge1.jpg'>
+      </a>
+    </li>
+    <li>
+      <a href='javascript:alert("敬请期待");'>
+        <p class='tit'>XXX</p>
+        <img src='/data/upload/charge1.jpg'>
+      </a>
+    </li>
+  </ul>
+ </section>
+<tc_include file="Public:footer" />
+
+<div class="palert">
+  <section class="info_section">
+  <ul>
+  <li><p class="pinfo">钱包地址：</p></li>    
+  <li><p class="pvalue">0x036a03fc47084741f83938296a1c8ef67f6e34fa</p></li> 
+  <li><p id="change_rate" class="pinfo">兑换比例（BTC：金币）：</p></li>
+  <li><p class="pvalue">1:100</p></li>
+  <li><p class="pinfo">兑换数量：</p></li>
+  <li><input id="data" class="ptxt" type="text" placeholder="输入兑换金币数量"></li>
+  <li style="text-align: center;">
+    <button class="pbtn" id="pay-btn" type="button" >充值</button>
+    <button class="pbtn" type="button" onclick="hidepop()">取消</button>
+  </li>
+  </ul>
+  </section> 
+</div>
+
+<script>
+
+function showpop(name){
+  $("#change_rate").html("兑换比例（" + name + "：金币）：");
+  $("#data").val("");
+  $(".palert").show();
+}
+
+function hidepop() {
+  $(".palert").hide();
+}
+
+$("#pay-btn").on('click',function(event){
+        var amount = $('#data').val();
+        var reg = new RegExp("^[0-9]*$");
+        if(!amount || !reg.test(amount)){
+            alert("请输入兑换数量!");
+            return
+        }
+        
+        // if(!amount || isNaN(amount)){
+        //     alert('请输入兑换数量');
+        //     return;
+        // }
+
+        var par = {};
+        par.token = "{$userinfo.api_token}";
+        par.amount = amount;
+        
+        doPost('/User/Pay/begin_mppay',par,function(data){
+          if (data.code == 200) {
+            window.location.reload();          
+          }
+          alert(data.descrp);
+          $("#data").val("");
+        });
+    });
+</script>
+</body>
+</html>

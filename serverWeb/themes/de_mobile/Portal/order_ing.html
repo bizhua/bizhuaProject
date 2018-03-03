@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+</head>
+
+<body class="padding0">
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">我的订单</p>
+</header>
+<section class="ordertype">
+  <ul>
+    <li>
+       <a href="{:U('portal/index/order')}"><p>待发货</p></a>
+    </li>
+    <li class="cur">
+      <a href="{:U('portal/index/order_ing')}"><p>发货中</p></a>
+    </li>
+    <li>
+      <a href="{:U('portal/index/order_end')}"><p>已送达</p></a>
+    </li>
+  </ul>
+</section>
+<section class="myordercon">
+  <ul id="show_list">
+
+  </ul>
+</section>
+<script type="text/javascript">
+param={};
+param.token = TOKEN;
+param.type = 3;
+param.limit_begin = 0;
+param.limit_num = 50;
+doPost('/Api/V8/getNotTakenWawaByUid',param,function(data){
+    if (data.code == 200) {
+      for (var i = 0; i < data.info.length; i++) {
+
+
+          $("#show_list").append('<li><div class="tcimg fl"><img src=" ' +  data.info[i].img + ' " width="100%"></div><div class="tcword fl"><p class="tit"> ' +  data.info[i].name + ' </p><p class="time"> ' +  data.info[i].play_time + ' </p></div></li>');
+
+
+      };
+    };
+});
+</script>
+</body>
+</html>

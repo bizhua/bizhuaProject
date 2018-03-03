@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>{$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <script src="https://cdn.bootcss.com/Swiper/4.0.7/js/swiper.min.js"></script>
+    <link href="https://cdn.bootcss.com/Swiper/4.0.7/css/swiper.min.css" rel="stylesheet">
+    <style type="text/css">
+		.swiper-wrapper img{width:100%;height:100%;}
+
+		.pop_mo{
+		  display: none;
+		  width: 100%;
+		  height: 100%;
+		  position: fixed;
+		  overflow: auto;
+		  background-color: rgba(0,0,0,0.7);
+		  top: 0px;
+		  left: 0px;
+		  z-index: 20;
+		 }
+
+		 .pop_moimg{
+		  display: block;
+		  margin:25px auto;
+		  width: 70%;
+		  max-width: 750px;
+		 }
+    </style>
+</head>
+
+<body>
+<!-- <header class="header"> -->
+<!--  <a href="{:U('portal/index/user')}"><img class="tx fl" src="{$userinfo.avatar}" /></a>
+<p class="title">{$site_name}</p>
+<a href="{:U('portal/index/setting')}" class="set"><i class="fa fa-gear"></i></a> -->
+<!-- </header> -->
+
+<div class="pop_mo">
+	<a href="javascript:$('.pop_mo').hide();"><img class="pop_moimg" src='/images/info.jpg' ></a>
+</div>
+
+<div class="swiper-container" style="height:140px;padding:0">
+    <div class="swiper-wrapper">
+    </div>
+    <div class="swiper-pagination" style="padding:0"></div>
+  </div>
+<section class="yqtips wrap">邀请双方都可获得<span class="red">{$give_invite_balcnce}金币</span>奖励哦！<a href="javascript:alert('此功能暂未开放');" class="btn fr">立即邀请</a></section>
+
+ <section class="goods-list">
+   <ul>
+  </ul>
+ </section>
+ <tc_include file="Public:footer" />
+ <script type="text/javascript">
+$(function(){251
+	//index logic start
+	var apiBanner =  "/Api/SiSi/getBanner";
+	var apiBannerParams = {};
+	doPost(apiBanner,apiBannerParams,function(data){
+		if(data.code == 200){
+			var temp = "";
+			$.each( data.data, function(i, item){
+				temp += "<div class='swiper-slide' style='padding:0'><a href=\"javascript:$('.pop_mo').show();\"><img src='"+item.pic+"'></a></div>";
+			});
+			$(".swiper-wrapper").append(temp);
+			var swiper = new Swiper('.swiper-container', {
+			      pagination: {
+			        el: '.swiper-pagination',
+			      },
+		    });
+
+		}else{
+			alert(data.descrp);
+		}
+
+	});
+
+	var apiDevice = "/Api/SiSi/getLive";
+	var apiDeviceParams = {};
+	apiDeviceParams.limit_begin = 0;
+	apiDeviceParams.from = 'H5';
+	doPost(apiDevice,apiDeviceParams,function(data){
+		if(data.code == 200){
+			var html = "";
+			$.each( data.info, function(i, item){
+				 var status = item.channel_status == 2 ? "空闲中" : "使用中";
+				 var status1 = item.channel_status == 2 ? "zt zt2" : "zt zt1";
+				  var temp = "<li>"
+							+  	"<a href='{:U('portal/index/play')}/deviceid/"+item.deviceid+"'>"
+							+ 		"<img src='"+item.thumb+"'>"
+							+  		"<p class='tit'>"+item.channel_title+"</p>"
+							+  		"<span class='"+status1+"'><i></i>"+status+"</span>"
+							+  		"<span class='price'>"+item.price+"/次</span>"
+							+	"</a>"
+							+"</li>";
+					html += temp;
+
+			});
+			$(".goods-list ul").append(html);
+		}else{
+			alert(data.descrp);
+		}
+	});
+	// index logic end
+})
+</script>
+</body>
+</html>

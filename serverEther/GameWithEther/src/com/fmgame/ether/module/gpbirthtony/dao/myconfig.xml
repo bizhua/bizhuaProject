@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="game_DBCP_pool.properties" />
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="com.fmgame.platform.dao.DBCPDataSourceFactory">
+				<property name="url" value="${url}" />
+				<property name="user" value="${user}" />
+				<property name="password" value="${password}" />
+				<property name="driverClassName" value="${driverClassName}" />
+				<property name="initialSize" value="${initialSize}" />
+				<property name="minIdle" value="${minIdle}" />
+				<property name="maxIdle" value="${maxIdle}" />
+				<property name="maxActive" value="${maxActive}" />
+				<property name="testOnBorrow" value="${testOnBorrow}" />
+				<property name="testWhileIdle" value="${testWhileIdle}" />
+				<property name="validationQuery" value="${validationQuery}" />
+				<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+				<property name="removeAbandonedOnMaintenance" value="${removeAbandonedOnMaintenance}"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="com/fmgame/ether/module/gpbirthtony/dao/mapper.xml" />
+	</mappers>
+
+</configuration>

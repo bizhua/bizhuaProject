@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+<style>
+*{margin:0;padding:0;}
+html,body,div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	color:#442204;
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+}
+.main{background:url(__TMPL__Public/images/h5/bg_help.png) center no-repeat;background-size: 100% 100%;overflow: hidden;}
+.content{
+	padding:20px;
+	width:90%;
+}
+.yaoqingma{
+	background: url(/themes/deerlive_mobile/Public/images/h5/bg_mycode_yaoqingma.png) left no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	padding-top: 67%;
+	margin: 15% 0 0 0;
+	height: 0;
+	position: relative;
+}
+.share_weixin{
+	background: url(/themes/deerlive_mobile/Public/images/h5/bg_mycode_share_weixin.png) left no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	margin: 20px 0 0 0;
+	padding-top: 16%;
+	height: 0;
+	position: relative;
+}
+.share_pengyouquan{
+	background: url(/themes/deerlive_mobile/Public/images/h5/bg_mycode_share_pengyouquan.png) left no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	margin: 20px 0 0 0;
+	padding-top: 16%;
+	height: 0;
+	position: relative;
+}
+p.tishi {
+    position: absolute;
+    top: 35%;
+    width: 80%;
+    margin: 0 10%;
+}
+p.my_code {
+	position: absolute;
+	top: 70%;
+	width: 100%;
+	text-align: center;
+	font-size: 26px;
+	color: #448f43;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+</style>
+</head>
+<body>
+<header class="header" >
+<a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+<p class="title" style="background: none;">邀请码</p>
+</header>
+<div class="main">
+	<div class="content">
+		<div class="yaoqingma">
+			<p class="tishi">每邀请一个好友加入并输入您的邀请码，您和被邀请人都将获得{$give_invite_balcnce}金币奖励，最多可获30000金币。</p>
+			<p class="my_code">{$userinfo["id"] + 68320}</p>
+		</div>
+		<div class="share_weixin"  onclick="shareToFriend()"></div>
+		<div class="share_pengyouquan" onclick="shareToMoment()"></div>
+	</div>
+</div>
+ <div class="share_img" style="display:none;" onclick="hide_img()"></div>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+function shareToFriend() {
+	$(".share_img").show();
+}
+function shareToMoment() {
+	$(".share_img").show();
+}
+function hide_img(){
+	$(".share_img").hide();
+}
+
+
+var imgUrl = "{:sp_get_asset_upload_path($logo_180_180_url,true)}";  //图片LOGO注意必须是绝对路径
+var lineLink = "{:sp_get_host()}/?qudao={$_COOKIE['qudao']}&incode={:intval($userinfo['id']+68320)}";   //网站网址，必须是绝对路径
+var descContent = '{$site_name}，抓中带回家！'; //分享给朋友或朋友圈时的文字简介
+var shareTitle = '跟我一起玩{$site_name}吧，输入邀请码{$userinfo["id"] + 68320}即得免费抓取机会~~';  //分享title
+var appid = '{$appId}'; //apiID，可留空
+
+wx.config({
+    debug: false,
+    appId: appid,
+    timestamp: {$timestamp},
+    nonceStr: '{$nonceStr}',
+    signature: '{$signature}',
+    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+});
+
+wx.ready(function(){
+  //console.log("ok");
+  wx_share(shareTitle,lineLink,imgUrl,descContent);
+});
+
+wx.error(function(res){
+    //console.log(res);
+});
+
+function wx_share(title, link, imgurl, desc) {
+  //朋友圈
+  wx.onMenuShareTimeline({
+    title: title,
+    link: link,
+    imgUrl: imgurl,
+    success: function() {
+      // 用户确认分享后执行的回调函数
+    },
+    cancel: function() {
+      // 用户取消分享后执行的回调函数
+    }
+  });
+  //微信好友
+  wx.onMenuShareAppMessage({
+    title: title,
+    desc: desc,
+    link: link,
+    imgUrl: imgurl,
+    type: 'link', // 分享类型,music、video或link，不填默认为link
+    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    success: function() {
+      // 用户确认分享后执行的回调函数
+    },
+    cancel: function() {
+      // 用户取消分享后执行的回调函数
+    }
+  });
+
+  //qq
+  wx.onMenuShareQQ({
+    title: title, // 分享标题
+    desc: desc, // 分享描述
+    link: link, // 分享链接
+    imgUrl: imgurl, // 分享图标
+    success: function() {
+      // 用户确认分享后执行的回调函数
+    },
+    cancel: function() {
+      // 用户取消分享后执行的回调函数
+    }
+  });
+  // qq空间
+  wx.onMenuShareQZone({
+    title: title, // 分享标题
+    desc: desc, // 分享描述
+    link: link, // 分享链接
+    imgUrl: imgurl, // 分享图标
+    success: function() {
+      // 用户确认分享后执行的回调函数
+    },
+    cancel: function() {
+      // 用户取消分享后执行的回调函数
+    }
+  });
+}
+
+
+</script>
+<style>
+.share_img{
+width: 100%;
+height:100%;
+background: url(/themes/deerlive_mobile/Public/images/h5/share_img.png) left no-repeat;
+background-size: 100% 100%;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 9999;
+}
+</style>
+</body>
+</html>

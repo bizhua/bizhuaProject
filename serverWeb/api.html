@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>API测试页面</title>
+</head>
+<body style="background-color: gray;">
+	<p>测试上架</p>
+	<form action="/Api/SiSi/is_shangjia" method="post">
+		qudao：<input name="qudao" type="text" value="kuailai-one"/>
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	<br/>
+    <p>1.APP第三方登录成功向服务端提交信息:</p>
+    <form action="/Api/SiSi/sendOauthUserInfo" method="post">
+        用户来源（wechat、qq、sina、）：<input name="from" type="text" />
+        名称(name)：<input name="name" type="text" />
+        头像url(head_img)：<input name="head_img" type="text" />
+        性别(1：男；2：女)：<input name="sex" type="text" />
+        access_token：<input name="access_token" type="text" />
+        expires_in（access_token过期时间）：<input name="expires_date" type="text" />
+        openid：<input name="openid" type="text" />
+        unionid(开放平台，公众平台用户统一)：<input name="unionid" type="text" />
+        qudao：<input name="qudao" type="text" />
+        <input type="submit" value="提交"/>
+    </form>
+	<br/>
+
+	<p>2.刷新Token:</p>
+	<form action="/Api/SiSi/refreshToken" method="post">
+		token：<input name="token" type="text" value="123"/>
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+
+	<p>3.获取个人资料</p>
+	<form action="/Api/SiSi/getUserInfo" method="post">
+		token：<input name="token" type="text" value="123"/>
+		id：<input name="id" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>4.获取消息通知</p>
+	<form action="/Api/SiSi/get_message" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+
+	<br/><br/>
+	
+	<p>5.获取收货地址</p>
+	<form action="/Api/SiSi/get_delivery_addr" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		<input type="submit" value="提交"/>
+	</form>
+返回值：
+<pre>
+{
+code: 200,
+
+descrp: "修改成功"
+}
+</pre>
+	<br/><br/>
+	
+	<p>6.修改收货地址</p>
+	<form action="/Api/SiSi/change_userinfo" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		收货人(delivery_name)：<input name="delivery_name" type="text" />
+		电话(delivery_mobile)：<input name="delivery_mobile" type="text" />
+		收货地址(delivery_addr)：<input name="delivery_addr" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+返回值：
+<pre>
+{
+code: 200,
+descrp: "修改成功"
+}
+</pre>
+	<br/><br/>
+	
+	<p>7.获取个人抓取记录</p>
+	<form action="/Api/SiSi/getPlayLogByUid" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+返回值：
+<pre>
+{
+code: 200,
+info: [
+	{
+		name: "哆啦A梦",
+		img: "http://doll.com/data/upload/20171025/59f046881145c.jpg",
+		play_time: "2017-10-24 11:46:35",
+		play_result: "抓取成功"
+	},
+	{
+		name: "哆啦A梦",
+		img: "http://doll.com/data/upload/20171025/59f046881145c.jpg",
+		play_time: "2010-10-23 08:01:01",
+		play_result: "抓取成功"
+	}
+],
+limit_end: 2,
+descrp: "success"
+}
+</pre>
+	<br/><br/>
+	
+	
+	
+	
+	<p>7-2.抓取成功还没有提取的娃娃</p>
+	<form action="/Api/SiSi/getNotTakenWawaByUid" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+返回值：
+<pre>
+{
+code: 200,
+info: [
+	{
+		doll_id: "49",
+		name: "哆啦A梦",
+		img: "http://kuailai.deerlive.com/data/upload/20171025/59f046881145c.jpg",
+		play_time: "2017-10-31 11:28:01",
+		num: 1
+	},
+	{
+		doll_id: "50",
+		name: "米老鼠",
+		img: "http://kuailai.deerlive.com/data/upload/20171030/59f70a53dfa3e.jpg",
+		play_time: "2017-10-24 11:46:35",
+		num: 1
+	},
+	{
+		doll_id: "49",
+		name: "哆啦A梦",
+		img: "http://kuailai.deerlive.com/data/upload/20171025/59f046881145c.jpg",
+		play_time: "2010-10-23 08:01:01",
+		num: 1
+	}
+],
+all_num: 4,
+not_token_num: 3,
+limit_end: 3,
+descrp: "success"
+}
+</pre>
+	<br/><br/>
+	
+	<p>7-3.提交邮寄/兑换娃娃申请</p>
+	<form action="/Api/SiSi/applyPostWawa" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		抓到娃娃订单编号(doll_id)：<input name="doll_id" type="text" value="1,2"/>*多个娃娃提交用,号分开
+		操作类型(type)：<input name="type" type="text" value="0"/>0 娃娃兑换金币 1邮寄娃娃
+		<input type="submit" value="提交"/>
+	</form>
+	
+	<p>8.获取单个人金币记录</p>
+	<form action="/Api/SiSi/getMoneylog" method="post" enctype="multipart/form-data">
+		token：<input name="token" type="text" value="123"/>
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+返回值：
+<pre>
+{
+code: 200,
+
+],
+limit_end: 1,
+descrp: "success"
+}
+</pre>
+	
+	
+	<br/><br/>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+
+
+
+
+
+	<p>8.APP获取启动页</p>
+	<form action="/Api/SiSi/getLaunchScreen" method="post">
+		qudao：<input name="qudao" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+
+	<p>9.APP获取Banner</p>
+	<form action="/Api/SiSi/getBanner" method="post">
+		qudao：<input name="qudao" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+
+	<p>10.获取首页设备列表</p>
+	<form action="/Api/SiSi/getLive" method="post">
+		渠道(qudao)：<input name="qudao" type="text" value="kuailai-one"/>
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+	返回值：
+	<pre>
+	{
+	code: 200,
+	info: [
+		{
+			deviceid: "10020",
+			channel_title: "娃娃机020",
+			channel_status: "2",
+			price: "100",
+			channel_stream: "rtmp://pili-live-rtmp.sou001.com/kuailai/1v2lnevnh974ljke",
+			thumb: "http://kuailai.deerlive.com/data/upload/20171025/59f046881145c.jpg"
+		},
+		{
+		deviceid: "10019",
+		channel_title: "娃娃机019",
+		channel_status: "2",
+		price: "300",
+		channel_stream: "rtmp://pili-live-rtmp.sou001.com/kuailai/jibwwtqfxafebeqn",
+		thumb: "http://kuailai.deerlive.com/data/upload/20171025/59f70ab7503a5.jpg"
+		}
+	],
+	limit_end: 2,
+	descrp: "success"
+	}
+	</pre>
+	<br/><br/>
+	<p>11.用户进入游戏厅</p>
+	<form action="/Api/SiSi/enterDeviceRoom" method="post">
+		token：<input name="token" type="text" value="123"/>
+		设备id(deviceid)：<input name="deviceid" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+<pre>
+{
+code: 200,
+data: {
+	channel_title: "娃娃机001",
+	channel_status: "3",//设备状态，0设备离线，1设备维护中，2设备空闲，3用户游戏中，4繁忙中(其他用户正在建立连接，设备未确认，用户可再次尝试连接)
+	channel_stream: null,
+	online_num: 0,
+	price: "200",
+	thumb: "http://kuailai.deerlive.com/data/upload/thumb/default.png",
+	uid: "100000",   //channel_status为3时有值
+	avatar: "http://kuailai.deerlive.com/data/upload/avatar/default.png",//channel_status为3时有值
+	user_nicename: "六棵树"//channel_status为3时有值
+},
+
+],
+descrp: "success"
+}
+</pre>
+	
+	<br/>
+	<br/>
+	<p>12.获取最近抓中记录</p>
+	<form action="/Api/SiSi/getWinLogByDeviceid" method="post">
+		设备id(deviceid)：<input name="deviceid" type="text" />
+		请求开始数(limit_begin)：<input name="limit_begin" type="text" />
+		请求数量(limit_num)：<input name="limit_num" type="text" />
+		<input type="submit" value="提交"/>
+	</form>
+<pre>
+{
+code: 200,
+data: {
+	channel_title: "娃娃机001",
+	channel_status: "2",
+	channel_stream: null,
+	online_num: 0,
+	price: "0",//单次抓取娃娃价格
+	thumb: "http://doll.com/data/upload/thumb/default.png" //视频缩略图
+},
+],
+descrp: "success"
+}
+</pre>
+	
+	
+	<br/><br/>
+
+	
+	<p>13.意见反馈</p>
+	<form action="/Api/SiSi/submitFeedback" method="post">
+		token：<input name="token" type="text" value="123"/>
+		反馈信息(content)：<input name="content" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	<p>14.获取充值套餐详情</p>
+	<form action="/Api/SiSi/get_recharge_package" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>15.获取Signaling Key</p>
+	<form action="/Api/SiSi/getSignalingKey" method="post">
+		token：<input name="token" type="text" value="123"/>
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>16.获取Channel Key</p>
+	<form action="/Api/SiSi/getChannelKey" method="post">
+		token：<input name="token" type="text" value="123"/>
+		设备id(deviceid)：<input name="deviceid" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>17.申请连接设备</p>
+	<form action="/Api/SiSi/connDeviceControl" method="post">
+		token：<input name="token" type="text" value="123"/>
+		设备id(deviceid)：<input name="deviceid" type="text" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+
+<pre>
+连接成功
+
+{
+code: 200,
+data: {
+	match_id: "11"
+},
+status: 1,
+descrp: "success"
+}
+
+有人占用
+
+{
+code: 200,
+data: {
+	uid: "100000",
+	avatar: "http://doll.com/data/upload/avatar/default.png",
+	user_nicename: "六棵树"
+},
+status: 0,
+descrp: "连接失败,机器繁忙"
+}
+</pre>
+
+	<p>18.获取设备信息(PC客户端专用)</p>
+	<form action="/Api/SiSi/getDeviceInfo" method="post">
+		设备id(machineID)：<input name="machineID" type="text" value="10000"/>
+		设备密码(machinePwd)：<input name="machinePwd" type="text" value="kz2017" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>19.设备验证游戏者身份(PC客户端专用)</p>
+	<form action="/Api/SiSi/verifyIdentidy" method="post">
+		设备id(machineID)：<input name="machineID" type="text" value="10000"/>
+		玩家id(uid)：<input name="uid" type="text" value="" />
+		游戏id(matchId)：<input name="matchId" type="text" value="" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>20.上报机器状态(PC客户端专用)</p>
+	<form action="/Api/SiSi/reportMachineStatus" method="post">
+		设备id(machineID)：<input name="machineID" type="text" value="10000"/>
+		设备密码(machinePwd)：<input name="machinePwd" type="text" value="kz2017" />
+		设备状态(machineState)：<input name="machineState" type="text" value="1" /><br />
+		设备状态(commState)：<input name="commState" type="text" value="1" />
+		设备状态(sigState)：<input name="sigState" type="text" value="1" />
+		设备状态(liveState)：<input name="liveState" type="text" value="1" /><br />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>21.上报玩家游戏结果状态(PC客户端专用)</p>
+	<form action="/Api/SiSi/reportGameResult" method="post">
+		设备id(machineID)：<input name="machineID" type="text" value="10000"/>
+		设备密码(machinePwd)：<input name="machinePwd" type="text" value="kz2017" />
+		游戏id(matchId)：<input name="matchId" type="text" value="" />
+		游戏结果(gameResult 0未抓中 1抓中)：<input name="gameResult" type="text" value="1" />
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	
+	
+	<p>30.游戏帮助</p>
+	<form action="/portal/appweb/help?token=123" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>31.邀请码</p>
+	<form action="/portal/appweb/my_code?token=123" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>32.输入邀请码</p>
+	<form action="/portal/appweb/input_code?token=123" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	<p>33.问题反馈</p>
+	<form action="/portal/appweb/feedback?token=123" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	<p>34.关于我们</p>
+	<form action="/portal/appweb/about_us?token=123" method="post">
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	
+	<p>35.设置设备为空闲</p>
+	<form action="/Api/SiSi/setDevicefree" method="post">
+		设备id(deviceid)：<input name="deviceid" type="text" value="10000"/>
+		<input type="submit" value="提交"/>
+	</form><br/><br/>
+	
+	
+	<br/>
+		<p>36：APP上传录制的视频</p>
+		<form action="/Api/SiSi/userUploadPlayVideo" method="post" enctype="multipart/form-data">
+			<!-- token：<input name="token" type="text" />
+			设备id(machineID)：<input name="machineID" type="text"/> -->
+			游戏id(matchId)：<input name="matchId" type="text" value="" />
+			视频文件：<input name="smeta" type="file" multiple="multiple"/>
+			<input type="submit" value="提交"/>
+		</form>
+	<br/>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0"> 
+  <title>{$site_name}</title> 
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/stylenew.css">
+ </head>
+ <style type="text/css">
+   .main{background:url({$mobile_index_big_url}) center 30px no-repeat;margin-left:0;}
+ </style>
+ <body> 
+  <div class="header other_header"> 
+   <div class="headerbg"></div> 
+   <div class="frame"> 
+    <div class="logo" title=""><img src="{$web_logo}" >
+     <!-- <a href="/" class="bg logopic" target="_blank"><i></i></a>  -->
+    </div> 
+   </div> 
+  </div> 
+  <div id="mainArea" class="banner"> 
+   <div id="zsp_cover"></div> 
+   <div id="zsp_pop"> 
+    <div class="close">
+     <p></p>
+    </div> 
+    <div class="know"></div> 
+    <div class="link"> 
+    </div> 
+   </div> 
+   <div class="home"> 
+    <div class="main clearfix"> 
+     <ul id="leftImg" class="leftImg fl"> 
+      <li style="display: list-item;"> <img src="{$mobile_index_big_url}" alt=""> </li> 
+     </ul> 
+     <div class="rightContent fr"> 
+      <div class="topImg"> 
+       <img src="__PUBLIC__/images/title.png" alt=""> 
+      </div> 
+      <div class="qrcode"> 
+       <img src="{$qrcode_url}"  width="300" height="300"></a>
+      </div> 
+      <ul class="apkBtnBox clearfix"> 
+       <li id="androidBtn">
+        <a class="link" target="_blank" href="{$android_url}"></a> <a class="corner" target="_blank" href="{$android_url}"></a> 
+        <div class="detail"> 
+         <div class="version">
+         </div> 
+         <ul class="list"> 
+          <li> <i>1</i> <span></span> </li> 
+          <li> <i>2</i> <span></span> </li> 
+         </ul> 
+         <div class="foot"></div> 
+        </div> 
+       </li> 
+       <li id="iosBtn">
+        <a class="link" target="_blank" href="{$ios_url}"></a> <a class="corner" target="_blank" href="{$ios_url}"></a> 
+        <div class="detail"> 
+         <div class="version">
+         </div> 
+         <ul class="list"> 
+          <li> <i>1</i> <span></span> </li> 
+         </ul> 
+         <div class="foot"></div> 
+        </div> 
+       </li> 
+       <li id="allBtn"> <a class="link" target="_blank" href="<php>echo get_mobile_download_url();</php>"></a> <a class="corner" target="_blank" href="<php>echo get_mobile_download_url();</php>"></a> 
+        <div class="detail"> 
+         <div class="version">
+         </div> 
+         <ul class="list"> 
+          <li> <i>1</i> <span></span> </li> 
+         </ul> 
+         <div class="foot"></div> 
+        </div> </li> 
+      </ul> 
+      <div class="alldown clearfix"> 
+      </div> 
+     </div> 
+    </div> 
+   </div>
+  </div> 
+  <div id="fx_tips">
+   <div class="arr"></div>
+   <div class="cont"></div>
+  </div> 
+  <div id="fx_loading"></div> 
+  <div class="footer" id="footer"> 
+   <div class="footerContent">
+    <div class="footerPDiv"> 
+     <p id="copyright"><span class="footerSpanLeft">{$company_name}</span>
+     <span>Copyright (C) 2015-{:date('Y')} {$site_name} All Rights Reserved</span></p> 
+     <p class="foottxt">官方联系电话：{$company_phone} </p> 
+     <p class="foottxt"> <span class="footerSpanLeft">地址：{$company_address}</span> </p> 
+    </div> 
+    <div class="footerEr"> 
+     <i class="qr-img1"></i> 
+     <i class="qr-img2"></i> 
+    </div> 
+   </div> 
+  </div>
+ 
+</body></html>

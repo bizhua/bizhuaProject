@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
+<properties_root>  
+	<!-- 游戏区配置 --> 
+	<server_port description="服务器端口">2888</server_port><!-- 对应game_config数据库t_game_config_area -->
+</properties_root>
+
+

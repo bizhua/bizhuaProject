@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 跳转提示 </title>
+<style type="text/css">
+.rtw2-cfx:after {content:"0";display:block;height:0;clear:both;}
+ .rtw2-cfx {zoom:1;}
+ .real-time-window {z-index:60000; display:block; height:50px; line-height:50px; overflow:hidden; zoom:1;}
+ .real-time-window .rtw2-in { height:50px;line-height:50px;}
+ .real-time-window .rtw2-lt { display:inline; float:left; width:61px; height:50px; background:url() 0 0 no-repeat #f9f5ec; zoom:1; }
+ .real-time-window .rtw2-md { display:inline; float:left; background:#f9f5ec; height:48px; line-height:48px; zoom:1; border-top:1px solid #f6e3c9;border-bottom:1px solid #f6e3c9;}
+ .real-time-window a.rtw2-md-title { font-family:"Microsoft YaHei","微软雅黑","SimHei","黑体" !important; display:inline-block; height:48px; line-height:48px; padding:0 5px; font-size:16px; }
+ .real-time-window a.rtw2-md-title:link { color:#122E67 !important;text-decoration:none !important;}
+ .real-time-window a.rtw2-md-title:hover { color:#ff8400 !important;text-decoration:underline !important;}
+ .real-time-window a.rtw2-md-title:visited { color:#52687e !important;text-decoration:none !important;}
+ .real-time-window a.rtw2-md-detail {font-family:"SimSun","宋体","Arial Narrow" !important; display:inline-block; height:48px; line-height:48px; padding:0 5px; font-size:16px; display:none;}
+ .real-time-window a.rtw2-md-detail:link { color:#22c4ff;text-decoration:none;}
+ .real-time-window a.rtw2-md-detail:hover { color:#22c4ff;text-decoration:underline !important;}
+ .real-time-window a.rtw2-md-detail:visited { color:#22c4ff;text-decoration:none;}
+ .real-time-window .rtw2-close { display:inline; width:42px; height:38px; float:left; background:url() -61px 0 no-repeat; padding-top:12px; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale, src=""); _background:none; zoom:1;}
+ .real-time-window .rtw2-close-btn{ width:26px; height:25px; display:block;background:url() no-repeat -103px 0 #f9f5ec;}
+ .real-time-window .rtw2-close-btn:hover{ background-position: right 0; }</style></head>
+<body background="./images/tz-001.gif">
+
+<table border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr><td height="134"></td></tr>
+</tbody></table>
+<table width="544" height="157" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tbody><tr valign="middle" align="middle">
+	<td background="./images/tz-002.jpg">
+	    <table border="0" cellpadding="0" cellspacing="0">
+		 <tbody><tr>
+		    <td style="padding-left:80px;padding-top:10px"><strong>服务器繁忙，页面自动 <a id="href" href="/">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b></strong></td>
+                 </tr>
+            </tbody></table>
+	</td>
+  </tr>
+</tbody>
+</table>
+<br>
+<script type="text/javascript">
+	(function(){
+	var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+	var interval = setInterval(function(){
+		var time = --wait.innerHTML;
+		if(time <= 0) {
+			location.href = href;
+			clearInterval(interval);
+		};
+	}, 1000);
+	})();
+</script>
+</body>
+</html>

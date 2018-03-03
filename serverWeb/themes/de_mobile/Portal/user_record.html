@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+</head>
+
+<body >
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">抓取记录</p>
+</header>
+<section class="tips">
+  <p><span class="red">重要提示：</span>抓取记录将保留7天，如果您在次期间的游戏过程中遇到任何问题，请点击该局游戏旁的申诉按钮反馈。</p>
+</section>
+<section class="cartcon cartcon2">
+  <ul id="show_list">
+
+  </ul>
+</section>
+<div class="tantit1">
+      <div class="tancontent tancontent1"><a href="#0" class="tantit-close"> </a>
+    <div class="tc_tit">炫耀抓取视频</div>
+
+    <div class="gdcon">
+          <div class="content">
+   <ul>
+     <li><a href="#"><img src="__TMPL__Public/images/share1.png" onclick="show_share_img()"><p>炫耀给微信好友</p></a></li>
+     <li><a href="#"><img src="__TMPL__Public/images/share2.png" onclick="show_share_img()"><p>炫耀到朋友圈</p></a></li>
+   </ul>
+      </div>
+        </div>
+  </div>
+    </div>
+ <tc_include file="Public:footer" />
+
+ <div class="share_img" style="display:none;" onclick="hide_img()"></div>
+<script type="text/javascript">
+    /*弹框JS内容*/
+    jQuery(document).ready(function($){
+
+
+		//打开窗口
+        $('.tancon1').on('click', function(event){
+            event.preventDefault();
+            $('.tantit1').addClass('visible1');
+            //$(".dialog-addquxiao").hide()
+        });
+        //关闭窗口
+        $('.tantit1').on('click', function(event){
+            if( $(event.target).is('.tantit-close') || $(event.target).is('.tantit1') ) {
+                event.preventDefault();
+                $(this).removeClass('visible1');
+            }
+        });
+        //ESC关闭
+        $(document).keyup(function(event){
+            if(event.which=='27'){
+                $('.tantit1').removeClass('visible1');
+            }
+        });
+
+    });
+
+$("#show_list").on('click','.xuanyao',function(event) {
+    $('.tantit1').addClass('visible1');
+});
+
+
+param={};
+param.token = TOKEN;
+param.limit_begin = 0;
+param.limit_num = 50;
+doPost('/Api/SiSi/getPlayLogByUid',param,function(data){
+    if (data.code == 200) {
+      for (var i = 0; i < data.info.length; i++) {
+          $("#show_list").append('<li><div class="buttoncon"><a href="javascript:0;" class="xuanyao tancon1">炫耀</a></div><div class="tcimg fl"><img src=" ' +  data.info[i].img + ' " style="width:100%;height:70px;"></div><div class="tcword fr"><p class="tit"> ' +  data.info[i].name + ' </p><p class="time"> ' +  data.info[i].play_time + ' </p><p class="zt red"> ' +  data.info[i].play_result + ' </p></div></li>');
+      };
+    };
+});
+
+function show_share_img(){
+$(".share_img").show();
+}
+function hide_img(){
+  $(".share_img").hide();
+}
+</script>
+<!--a href="{:U('portal/index/kefu')}" class="shensu">申诉</a -->
+<style>
+.share_img{
+width: 100%;
+height:100%;
+background: url(/themes/deerlive_mobile/Public/images/h5/share_img.png) left no-repeat;
+background-size: 100% 100%;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 9999;
+}
+</style>
+</body>
+</html>

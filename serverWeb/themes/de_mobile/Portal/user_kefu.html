@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+<style>
+*{margin:0;padding:0;}
+
+.main{background:url(__TMPL__Public/images/h5/bg_help.png) center no-repeat;background-size: 100% 100%;overflow: hidden;}
+.content{
+    padding: 5%;
+    width: 90%;
+}
+p.redio {
+    padding: 5px 20px 5px 30px;
+    font-size: 16px;
+    cursor:pointer;
+}
+.check{
+    background:url(__TMPL__Public/images/h5/bg_feedback_redio_check.png) left no-repeat;
+    background-size: 30px;
+}
+.no_check{
+    background:url(__TMPL__Public/images/h5/bg_feedback_redio_no_check.png) left no-repeat;
+    background-size: 30px;
+}
+
+.miaoshu{
+    background: url(/themes/deerlive_mobile/Public/images/h5/bg_feedback_miaoshu.png) left no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    padding-top: 44%;
+    margin: 8px 0 0 0;
+    height: 0;
+    position: relative;
+}
+.submit{
+    background: url(/themes/deerlive_mobile/Public/images/h5/bg_feedback_submit.png) left no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    margin: 20px 0 0 0;
+    padding-top: 16%;
+    height: 0;
+    position: relative;
+}
+textarea.input_content {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    width: 96%;
+    height: 96%;
+    text-align: left;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #666;
+}
+.pconfirm, .palert {
+    display:none;
+    z-index: 10;
+    position: absolute;
+    margin: 0 auto;
+    top: 20%;
+    left: 10%;
+    border: 1px solid #d6a770;
+    width: 80%;
+    background: #fefefe;
+    height: 140px;
+    border-radius: 26px;
+}
+.pconfirm .p_txt, .palert .p_txt {
+font-size: 16px;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+    height: 30px;
+    color: #000;
+}
+.pconfirm .p_btn, .palert .p_btn{
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    border-top: 1px solid #d6a770;
+    height: 50px;
+    line-height: 50px;
+}
+.palert .p_btn .p_close {
+    padding:12px 80px 0px 80px;
+}
+
+p,div {
+     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+[contenteditable = "true"], input, textarea {
+    -webkit-user-select: auto!important;
+    -khtml-user-select: auto!important;
+    -moz-user-select: auto!important;
+    -ms-user-select: auto!important;
+    -o-user-select: auto!important;
+    user-select: auto!important;
+}
+
+
+.footer li.zhua i {
+    background: url(/themes/deerlive_mobile/Public/images/zhua_oncheck.png);
+    background-size: cover;
+}
+.footer li i.i4 {
+    background: url(/themes/deerlive_mobile/Public/images/bot4.png) 0 0px;
+    background-size: cover;
+}
+</style>
+</head>
+<body>
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">客服反馈</p>
+</header>
+<div class="main">
+    <div class="content">
+        <p class="redio check">建议和吐槽</p>
+        <p class="redio no_check">快递和娃娃问题</p>
+        <p class="redio no_check">其他</p>
+        <div class="miaoshu">
+            <textarea class="input_content" placeholder="添加描述"></textarea>
+        </div>
+        <div class="submit"></div>
+    </div>
+</div>
+<div class="palert">
+    <div class="p_txt" id="palert">感谢您的反馈，我们将持续改进</div>
+    <div class="p_btn"><span class="p_close" onclick="pclose()">关闭</span></div>
+</div>
+ <tc_include file="Public:footer" />
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>
+var token = TOKEN;
+
+$(".redio").click( function () {
+     $(this).removeClass('no_check');
+     $(this).addClass('check');
+     $(this).siblings().removeClass('check');
+     $(this).siblings().addClass('no_check');
+});
+
+$(".submit").click( function () {
+    var title = $('.check').html();
+    var content = $('.input_content').val();
+    $.ajax({
+        type: 'POST',
+        url: '/Api/SiSi/submitFeedback',
+        dataType: 'json',
+        data: {"token":token,"title": title, "content":content},
+        success: function(d) {
+            $("#palert").html(d.descrp);
+            $(".palert").show();
+        }
+    });
+
+});
+function pclose() {
+    $(".palert").hide();
+    location.reload();
+}
+</script>
+</body>
+</html>

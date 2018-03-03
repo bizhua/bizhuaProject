@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+<style>
+*{margin:0;padding:0;}
+html,body,div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
+	color:#442204;
+	font-size: 16px;
+	font-family: "Microsoft YaHei";
+}
+.main{background:url({$aboutus_big_bg_url}) center no-repeat;background-size: 100% 100%;overflow: hidden;}
+p.version {
+    position: absolute;
+    bottom: 200px;
+    width: 100%;
+}
+p.kefu {
+    position: absolute;
+    bottom: 180px;
+    width: 100%;
+}
+</style>
+</head>
+<body>
+<header class="header" >
+<a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+<p class="title" style="background: none;">关于我们</p>
+</header>
+<div class="main">
+<p class="kefu" style="bottom: 100px;">客服QQ: {$aboutus_qq_url}</p>
+</div>
+
+
+</body>
+</html>

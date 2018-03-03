@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html mode="normal">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="telephone=no" name="format-detection">
+<title>
+<notempty name="work['description']">
+{$work.description}-
+</notempty>
+{$work.user_nicename}
+</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/jwplayer/web.css">
+<script src="__PUBLIC__/jwplayer/jquery.js"></script>
+<script src="__PUBLIC__/jwplayer/jwplayer.js"></script>
+<script type="text/javascript">jwplayer.key="GJGJhSx+OPyvYOvhHu83iP66Hctf6hq9uXbuhg==";</script>
+</head>
+<body onresize="resize()">
+<div class="main">
+	<center>
+		<div id="main" style="margin: 0px auto; position: relative; width: 360px; height: 640px; background: rgb(0, 0, 0);">
+			<div id="container">
+				<php>
+					$smeta = json_decode($work['smeta'],true);
+				</php>
+				<video width="100%" height="100%" poster="{$smeta.0.thumb}">
+					  <source src="{$smeta.0.r_url}" type="video/mp4" />
+				</video>
+    		</div>
+			<div class="btn-box pa" style="width:100%;margin:0 auto;position:fixed;bottom: 0;left: 0;font-size:24px;" onclick="download()">
+				<!-- <img src="/public/jwplayer/logo.png" style="border-radius:12px;height:46px;vertical-align:middle;"> --> 下载客户端更流畅
+			</div>
+			<p class="desc pa"></p>
+			<div class="btn play pa" id="play-control" style="display:none;">
+			</div>
+			<div style="height: 60px;width:100%;top: 60%;position: absolute;color:#ffffff;" id="media_status_msg">
+			</div>
+		</div>
+	</center>
+
+	<div class="user pa" style="">
+		<img class="user-pic fl" id="portrait" src="<php>echo sp_get_user_avatar_url_api($work['avatar']);</php>">
+		<h3 class="user-name to" id="nick" style="margin-top: 8px;">{$work.user_nicename}</h3>
+	</div>
+	<div class="num pa" style="padding-top: 13px; padding-left: 10px; color: #FFF;text-align: right;">
+	主播ID：{$work.uid}
+	</div>
+</div>
+<script>
+	var media_info = {"status":1,"image":"{$smeta.0.thumb}","file":"{$smeta.0.r_url}","primary":"flash"};
+</script>
+
+<script type="text/javascript">
+	var player = null;
+	var g_width = 360;
+	var g_height = 640;
+	function getWidth(){
+		return g_width;
+		return 360;
+	};
+	function getHeight() {
+		return g_height;
+		return 640;
+	};
+
+	function play() {
+		if (media_info.status == -1) {
+			alert('此视频目前不能播放');
+			return;
+		}
+		if (media_info.status == 1) {
+			player = jwplayer("container").setup({
+				file: media_info.file,
+				width: getWidth(),
+				height: getHeight(),
+				image: media_info.image,
+				primary: media_info.primary,
+				controls: false,
+				events: {
+					onComplete: onComplete,
+					onReady: function () {
+						$('#play-control').show();
+						$('#media_status_msg').html('点击播放');
+						set_pos();
+					},
+					onPlay: onPlay,
+					onPause: onPause,
+					onBuffer: onBuffer,
+					onDisplayClick: onDisplayClick,
+					onSetupError: onSetupError,
+					onBufferChange: function () { console.log("onBufferChange!!!"); },
+					onBufferFull: function () { console.log("onBufferFull!!!"); }
+				}
+			});
+		}else{
+			/*
+			var playlist = [];
+			for(var i = 0; i < media_info.file.length; i++) {
+				playlist.push({file: media_info.file[i].url, image: media_info.file[i].img});
+			}
+			player = jwplayer("container").setup({
+				id: 'playerID',
+				width: '360',
+				height: '640',
+				playlist: playlist,
+				primary: "flash",
+				controls: false,
+				events: {
+					onComplete: onComplete,
+					onReady: function () {
+						set_pos();
+					},
+					onPlay: onPlay,
+					onPause: onPause,
+					onBuffer: onBuffer,
+					onDisplayClick: onDisplayClick,
+					onSetupError: onSetupError,
+					onBufferChange: function () { console.log("onBufferChange!!!"); },
+					onBufferFull: function () { console.log("onBufferFull!!!"); }
+				}
+
+			});
+			*/
+		}
+	}
+	function onComplete() {
+		//中间显示二维码信息
+	}
+	function onBuffer() {
+		$('#media_status_msg').hide();
+
+		if (media_info.status == 1) {
+			$('#play-control').show();
+			$('#play-control').attr('class', 'btn loading pa');
+		}
+	}
+	function onPlay() {
+		$('#media_status_msg').hide();
+		if (media_info.status == 1) {
+			$('#play-control').hide();
+			$('#play-control').attr('class', 'btn play pa');
+		}
+	}
+	function onPause() {
+		$('#media_status_msg').hide();
+
+		if (media_info.status == 1) {
+			$('#play-control').show();
+			$('#play-control').attr('class', 'btn play pa');
+		}
+		playing = false;
+	}
+	function onDisplayClick() {
+		player.pause();
+	}
+	function onSetupError(a, b) {
+		if (media_info.status == 1) {
+			$('#play-control').hide();
+		}
+
+		if ((media_info.forbid == 1 && media_info.reason != '') || media_info.shieldstat === false) {
+			$('#media_status_msg').html('<p style="text-align:center;color:#ffffff;">'+media_info.reason+'</p>');
+			$('#media_status_msg').show();
+		}
+	}
+	function user_show() {
+	}
+	function set_pos() {
+	}
+	function resize() {
+		set_pos();
+	}
+
+	function set_screen() {
+		var width = window.screen.width;
+		var height = window.screen.height;	
+		switch(width) {
+			case 0:
+				g_width=320;
+				g_height=560;
+				$("#main").css({"width":320,"height":500});
+				$("#noplay").css({"width":320,"height":500});
+				break;
+			case 0:
+				g_width=375;
+				g_height=640;
+				$("#main").css({"width":g_width,"height":600});
+				$("#noplay").css({"width":g_width,"height":600,"padding-left":40});
+				break;
+			case 0:
+				g_width=414;
+				g_height=700;
+				$("#main").css({"width":g_width,"height":674});
+				$("#noplay").css({"width":g_width,"height":674,"padding-left":60});
+				break;
+			default:
+				g_width=width;
+				g_height=height;
+				$(".main").css({"width":g_width,"height":g_height});
+				$("#main").css({"width":g_width,"height":g_height});
+				$("#noplay").css({"width":g_width,"height":g_height,"padding-left":30});
+		}
+		
+	}
+
+	$(document).ready(function(){
+		$('#play-control').show();
+		$('#media_status_msg').html('点击观看');
+		set_screen();
+		if ((media_info.forbid == 1 && media_info.reason != '') || media_info.shieldstat === false) {
+			$('#media_status_msg').html('<p style="text-align:center;color:#000;">'+media_info.reason+'</p>');
+			$('#media_status_msg').show();
+		}else{
+			//play();
+			$('#play-control').click(function() {
+				var myVideo = document.getElementsByTagName('video')[0];
+				if (myVideo.paused) {
+					$(".jw-preview,#media_status_msg,#play-control").hide();
+					myVideo.play();
+				} else {
+					myVideo.pause();
+				}
+			});
+		}
+
+	});
+
+	function download() {
+		location.href='/';
+	}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fmgame.ether.module.gpbirthtony.dao.IBirthTonyDAO">
+ <resultMap id="BaseResultMap" type="com.fmgame.ether.module.gpbirthtony.dao.BirthTonyData" >
+    <id column="pId" property="pid" jdbcType="BIGINT" />
+    <result column="addressId" property="addressid" jdbcType="VARCHAR" />
+    <result column="gens" property="gens" jdbcType="VARCHAR" />
+    <result column="charact" property="charact" jdbcType="SMALLINT" />
+    <result column="repFlag" property="repflag" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pId, addressId, gens, charact, repFlag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_birthtony
+    where pId = #{pid,jdbcType=BIGINT}
+  </select>
+  
+  <insert id="insert" parameterType="com.fmgame.ether.module.gpbirthtony.dao.BirthTonyData" >
+    insert into t_birthtony (pId, addressId, gens, 
+      charact, repFlag)
+    values (#{pid,jdbcType=BIGINT}, #{addressid,jdbcType=VARCHAR}, #{gens,jdbcType=VARCHAR}, 
+      #{charact,jdbcType=SMALLINT}, #{repflag,jdbcType=BIT})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.fmgame.ether.module.gpbirthtony.dao.BirthTonyData" >
+    update t_birthtony
+    set addressId = #{addressid,jdbcType=VARCHAR},
+      gens = #{gens,jdbcType=VARCHAR},
+      charact = #{charact,jdbcType=SMALLINT},
+      repFlag = #{repflag,jdbcType=BIT}
+    where pId = #{pid,jdbcType=BIGINT}
+  </update>
+</mapper>

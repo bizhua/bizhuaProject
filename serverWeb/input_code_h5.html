@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+      <tc_include file="Public:head" />
+<style>
+*{margin:0;padding:0;}
+html,body,div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
+	color:#442204;
+	font-size: 14px;
+	font-family: "Microsoft YaHei";
+}
+.main{background:url(__TMPL__Public/images/h5/bg_help.png) center no-repeat;background-size: 100% 100%;overflow: hidden;}
+.content{
+	padding:20px;
+	width:90%;
+}
+.yaoqingma1{	
+	background-size: 100% 50%;
+	width: 100%;
+	padding-top: 60%;
+	margin: 0 0 0 0;
+	height: 0;
+	position: relative;
+}
+.yaoqingma2{	
+	background-size: 100% 50%;
+	width: 100%;
+	padding-top: 60%;
+	margin: 0 0 0 0;
+	height: 0;
+	position: relative;
+}
+.submit{
+	background: url(/themes/deerlive_mobile/Public/images/h5/bg_feedback_submit.png) center no-repeat;
+	background-size: 100% 100%;
+	width: 80%;
+	margin: 10% 0 0 0;
+	padding-top: 16%;
+	height: 0;
+	position: relative;
+}
+.input_code{
+	background: url(/themes/deerlive_mobile/Public/images/h5/bg_mycode_input.png) left no-repeat;
+	background-size: 100% 100%;
+	width: 50%;
+	top: 55%;
+	left: 25%;
+	height: 15%;
+	position: absolute;
+	border: 0;
+	outline: none;
+	text-align: center;
+}
+p.tishi {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+}
+.palert2, .palert {
+	display:none;
+    z-index: 10;
+    position: absolute;
+    margin: 0 auto;
+    top: 20%;
+    left: 10%;
+    border: 1px solid #d6a770;
+    width: 80%;
+    background: #fefefe;
+    height: 140px;
+    border-radius: 26px;
+}
+.palert2 .p_txt, .palert .p_txt {
+font-size: 16px;
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+    height: 30px;
+    color: #000;
+}
+.palert2 .p_btn, .palert .p_btn{
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    border-top: 1px solid #d6a770;
+    height: 50px;
+    line-height: 50px;
+}
+.palert .p_btn .p_close,.palert2 .p_btn .p_close {
+	padding:12px 80px 0px 80px;
+}
+[contenteditable = "true"], input, textarea {
+    -webkit-user-select: auto!important;
+    -khtml-user-select: auto!important;
+    -moz-user-select: auto!important;
+    -ms-user-select: auto!important;
+    -o-user-select: auto!important;
+    user-select: auto!important;
+}
+</style>
+</head>
+<body>
+<header class="header" >
+<a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+<p class="title" style="background: none;">输入邀请码</p>
+</header>
+<div class="main">
+	<div class="content">
+		<div class="yaoqingma1">
+			<input class="input_code" type="text" placeholder="输入邀请码">			
+		</div>
+		<div class="yaoqingma2">
+			<input class="input_code" type="password" placeholder="输入邀请码">			
+		</div>
+		<div class="submit"></div>
+	</div>
+</div>
+<div class="palert">
+	<div class="p_txt" id="palert"></div>
+	<div class="p_btn"><span class="p_close" onclick="pclose()">关闭</span></div>
+</div>
+<div class="palert2">
+	<div class="p_txt" id="palert2"></div>
+	<div class="p_btn"><span class="p_close" onclick="pclose2()">关闭</span></div>
+</div>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script>
+var token = "{$userinfo.api_token}";
+
+$(".redio").click( function () {
+	 $(this).removeClass('no_check');
+	 $(this).addClass('check');
+	 $(this).siblings().removeClass('check');
+	 $(this).siblings().addClass('no_check');
+});
+
+$(".submit").click( function () {
+	var title = $('.check').html();
+	var code = $('.input_code').val();
+	$.ajax({
+		type: 'POST',
+		url: '/Api/SiSi/applyInviteCode',
+		dataType: 'json',
+		data: {"token":token,"code": code},
+		success: function(d) {
+				if(d.code == 200) {
+					$("#palert").html(d.descrp);
+					$(".palert").show();
+				}else{
+					$("#palert2").html(d.descrp);
+					$(".palert2").show();
+				}
+		}
+	});
+
+});
+function pclose() {
+	$(".palert").hide();
+	location.reload();
+}
+function pclose2() {
+	$(".palert2").hide();
+}
+</script>
+</body>
+</html>

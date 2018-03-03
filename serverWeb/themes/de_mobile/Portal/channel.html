@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html mode="normal">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="telephone=no" name="format-detection">
+<title>{$user_nicename}的直播间-{$site_name}</title>
+<link rel="stylesheet" type="text/css" href="/public/jwplayer/web.css">
+<script src="/public/jwplayer/jquery.js"></script>
+<script src="/public/jwplayer/jwplayer.js"></script>
+<script src="/public/jwplayer/jwpsrv.js"></script>
+<script type="text/javascript">jwplayer.key="GJGJhSx+OPyvYOvhHu83iP66Hctf6hq9uXbuhg==";</script>
+</head>
+<body onresize="resize()">
+<div class="main">
+	<center>
+		<div id="main" style="margin: 0px auto; position: relative; width: 360px; height: 640px; background: rgb(0, 0, 0);">
+			<div id="container">
+
+				<php>if($channel_status != 2){</php>
+					<div id="noplay" style="vertical-align: middle; display: table-cell; padding: 10px 10px 10px 30px; margin: 0px auto; width: 360px; height: 640px;">
+						<p  style="text-align: center; line-height: 130px; margin-top: -100px;">直播已结束,去其它房间看看吧</p>
+						<php>$tuijian_room = sp_get_pc_liveroom();</php>
+						<foreach name="tuijian_room"  item="vo" >
+							<div style="float:left;padding:3px;height:140px;">
+								<a href="/portal/channel/index/id/{$vo.room_id}"><img src="<php>echo sp_get_user_avatar_url_api($vo['avatar']);</php>" width="140px;" height="140px;">
+								<div class="btn play pa" id="play-control" style="position:relative;margin:-110px 0px 0px -140px;">
+								</div>
+								</a>
+							</div>
+						</foreach>
+					</div>
+				<php>}else{</php>
+					<video controls="controls" controls="controls" width="100%" height="100%" poster="<php>echo sp_get_live_thumb_path($thumb_type,$channel_source,$thumb);</php>">
+					  <source src="<php>echo sp_get_play_url_m3u8($channel_source,$stream_type,$third_stream);</php>" type="video/mp4" />
+					</video>
+				<php>}</php>
+    			</div>
+			<div class="btn-box pa" style="width:100%;margin:0 auto;position:fixed;bottom: 0;left: 0;font-size:24px;" onclick="download()">
+				<!-- <img src="/public/jwplayer/logo.png" style="border-radius:12px;height:46px;vertical-align:middle;"> --> 下载客户端更流畅
+			</div>
+			<p class="desc pa"></p>
+			<div class="btn play pa" id="play-control" style="display:none;">
+			</div>
+			<div style="height: 60px;width:100%;top: 60%;position: absolute;color:#ffffff;" id="media_status_msg">
+			</div>
+			<div class="share-box pa none">
+			</div>
+		</div>
+	</center>
+
+	<div class="user pa" style="">
+		<img class="user-pic fl" id="portrait" src="<php>echo sp_get_user_avatar_url_api($avatar);</php>">
+		<h3 class="user-name to" id="nick" style="margin-top: 8px;">{$user_nicename}</h3>
+	</div>
+	<div class="num pa" style="padding-top: 13px; padding-left: 10px; color: #FFF;text-align: right;">
+	主播ID：{$channel_creater}
+	</div>
+</div>
+<script>
+	var media_info = {"status":1,"image":"<php>echo sp_get_live_thumb_path($thumb_type,$channel_source,$thumb);</php>","title":"","name":"","file":"<php>echo sp_get_play_url_m3u8($channel_source,$stream_type,$third_stream);</php>","user":{"face":"http:\/\/img.qianchuo.com\/face\/31\/13307679.jpg?v=58","uid":"13307679","nickname":"TM\u5e72\ud83c\udf1f\u6d0b\u6c14","exp_value":"541680","city":"\u6210\u90fd","grade":24},"primary":"flash"};
+</script>
+
+<script type="text/javascript">
+	var player = null;
+	var g_width = 360;
+	var g_height = 640;
+	function getWidth(){
+		return g_width;
+		return 360;
+	};
+	function getHeight() {
+		return g_height;
+		return 640;
+	};
+
+	function play() {
+		if (media_info.status == -1) {
+			alert('此视频目前不能播放');
+			return;
+		}
+		if (media_info.status == 1) {
+			player = jwplayer("container").setup({
+				file: media_info.file,
+				width: getWidth(),
+				height: getHeight(),
+				image: media_info.image,
+				primary: media_info.primary,
+				controls: false,
+				events: {
+					onComplete: onComplete,
+					onReady: function () {
+						$('#play-control').show();
+						$('#media_status_msg').html('直播中，点击观看');
+						set_pos();
+					},
+					onPlay: onPlay,
+					onPause: onPause,
+					onBuffer: onBuffer,
+					onDisplayClick: onDisplayClick,
+					onSetupError: onSetupError,
+					onBufferChange: function () { console.log("onBufferChange!!!"); },
+					onBufferFull: function () { console.log("onBufferFull!!!"); }
+				}
+			});
+		}else{
+			/*
+			var playlist = [];
+			for(var i = 0; i < media_info.file.length; i++) {
+				playlist.push({file: media_info.file[i].url, image: media_info.file[i].img});
+			}
+			player = jwplayer("container").setup({
+				id: 'playerID',
+				width: '360',
+				height: '640',
+				playlist: playlist,
+				primary: "flash",
+				controls: false,
+				events: {
+					onComplete: onComplete,
+					onReady: function () {
+						set_pos();
+					},
+					onPlay: onPlay,
+					onPause: onPause,
+					onBuffer: onBuffer,
+					onDisplayClick: onDisplayClick,
+					onSetupError: onSetupError,
+					onBufferChange: function () { console.log("onBufferChange!!!"); },
+					onBufferFull: function () { console.log("onBufferFull!!!"); }
+				}
+
+			});
+			*/
+		}
+	}
+	function onComplete() {
+		//中间显示二维码信息
+	}
+	function onBuffer() {
+		$('#media_status_msg').hide();
+
+		if (media_info.status == 1) {
+			$('#play-control').show();
+			$('#play-control').attr('class', 'btn loading pa');
+		}
+	}
+	function onPlay() {
+		$('#media_status_msg').hide();
+		if (media_info.status == 1) {
+			$('#play-control').hide();
+			$('#play-control').attr('class', 'btn play pa');
+		}
+	}
+	function onPause() {
+		$('#media_status_msg').hide();
+
+		if (media_info.status == 1) {
+			$('#play-control').show();
+			$('#play-control').attr('class', 'btn play pa');
+		}
+		playing = false;
+	}
+	function onDisplayClick() {
+		player.pause();
+	}
+	function onSetupError(a, b) {
+		if (media_info.status == 1) {
+			$('#play-control').hide();
+		}
+
+		if ((media_info.forbid == 1 && media_info.reason != '') || media_info.shieldstat === false) {
+			$('#media_status_msg').html('<p style="text-align:center;color:#ffffff;">'+media_info.reason+'</p>');
+			$('#media_status_msg').show();
+		}
+	}
+	function user_show() {
+	}
+	function set_pos() {
+	}
+	function resize() {
+		set_pos();
+	}
+
+	function set_screen() {
+		var width = window.screen.width;
+		var height = window.screen.height;	
+		switch(width) {
+			case 0:
+				g_width=320;
+				g_height=560;
+				$("#main").css({"width":320,"height":500});
+				$("#noplay").css({"width":320,"height":500});
+				break;
+			case 0:
+				g_width=375;
+				g_height=640;
+				$("#main").css({"width":g_width,"height":600});
+				$("#noplay").css({"width":g_width,"height":600,"padding-left":40});
+				break;
+			case 0:
+				g_width=414;
+				g_height=700;
+				$("#main").css({"width":g_width,"height":674});
+				$("#noplay").css({"width":g_width,"height":674,"padding-left":60});
+				break;
+			default:
+				g_width=width;
+				g_height=height;
+				$(".main").css({"width":g_width,"height":g_height});
+				$("#main").css({"width":g_width,"height":g_height});
+				$("#noplay").css({"width":g_width,"height":g_height,"padding-left":30});
+		}
+		
+	}
+
+	var playing = false;
+
+	$(document).ready(function(){
+		<php>if($channel_status == 2){</php>
+			$('#play-control').show();
+			$('#media_status_msg').html('直播中，点击观看');
+		<php>}</php>
+		set_screen();
+		if ((media_info.forbid == 1 && media_info.reason != '') || media_info.shieldstat === false) {
+			$('#media_status_msg').html('<p style="text-align:center;color:#000;">'+media_info.reason+'</p>');
+			$('#media_status_msg').show();
+		}else{
+			//play();
+			$('#play-control').click(function() {
+				var myVideo = document.getElementsByTagName('video')[0];
+				if (myVideo.paused) {
+					$(".jw-preview,#media_status_msg,#play-control").hide();
+					myVideo.play();
+				} else {
+					myVideo.pause();
+				}
+			});
+		}
+
+	});
+
+	function download() {
+			location.href='/';
+	}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$post_title}_{$site_name}}</title>
+    <meta name="keywords" content="{$seo_keywords}" />
+    <meta name="description" content="{$seo_description}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <tc_include file="Public:head" />
+         <style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+			font-size: 14px;
+			line-height: 1.5em;
+			color:#5f5c5c;
+		}
+	      .post_content{
+	          min-height:680px;
+	          padding:10px;
+	      }
+
+        </style>
+</head>
+<body>
+<!-- <div style="position: fixed;width:100%;background-color: #fff;">
+<div style="background-color: #E73D3D;">
+<image src="/themes/deerlive/Public/images/logo2.png" style="height: 40px;"/>
+</div>
+</div> -->
+<div style="height:15px;"></div>
+
+<div style="padding-bottom: 11px;">
+    <h4 style="text-align: center;font-size: 16px;">{$post_title}</h4>
+</div>
+
+<hr style="border: none; border-top: solid 1px #dadada;" />
+
+<div class="post_content ">
+ {$post_content}  
+</div>
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/commen.js"></script>
+</body>
+</html>

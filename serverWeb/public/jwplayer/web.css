@@ -1,0 +1,48 @@
+body, p, a, span, i, em, strong, img, strong, span, div, h1, h2, h3, h4, h5, h6, section, ul, li, header, footer, nav { color:#9E9D9D;margin: 0;padding: 0;font-weight: normal; }
+body { font:normal normal 14px Arial,Helvetica,'微软雅黑','黑体';background-color: #f5f5f5;color: #666;line-height:22px;min-width:320px;margin:0 auto;}
+img { border:0;}
+p { text-align: justify;}
+strong { color: #F4629C;}
+a { text-decoration: none; }
+.c:after { clear:both;overflow: hidden;display: block;height: 0;content:'.';}
+.to { overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.fl { float: left;}
+.fr { float: left;}
+.pr { position: relative;}
+.pa { position: absolute;}
+.none { display: none;}
+.blk { display: block;}
+.user { left:15px;top:15px;padding: 3px;background-color: #7F7F7D;border-radius: 50px;padding-right: 20px;opacity: 0.85}
+.user-pic { width: 42px;height:42px;border-radius: 42px;display: block;}
+.user-name { margin-left: 50px;color: #fff;font-size: 14px;max-width: 80px;}
+.num {width: 180px;height:43px;right:15px;top:15px;}
+.num div {float:right;}
+.num div img{border-radius:22px;width:44px;}
+.num-img { width: 25px;margin: 5px 0 0 10px;}
+.num-s { width: 100%;bottom:2px;left:0;text-align: center;color: #fff;text-shadow: 0px 1px 2px #666}
+.btn-box-bg { width: 80%;height: 46px;background-color: #000;opacity: 0.4;top:640;left:0;}
+.btn-box { width: 80%;height: 46px;position:fixed;bottom:0px;line-height: 37px;z-index: 2;background: url(http://web.qianchuo.com/v/img/bar_bg.png)}
+.a { left:50%;}
+.desc { bottom:56px;left:0;width: 90%;height: 20px;text-overflow:ellipsis;white-space:nowrap;overflow: hidden;padding:0 5%;color: #fff;font-size: 16px}
+.btn { width: 60px;height: 60px;background: url(/public/images/play.png) no-repeat 0 0;z-index:1000;background-size: 60px;left:50%;top:50%;margin: -30px 0 0 -30px;}
+
+.code {
+	position: absolute;
+	width:150px;
+	height:150px;
+	top:450px;
+	right: -180px;
+}
+.code img {
+	width:150px;
+	height:150px;
+}
+.code p {
+	color: #000;
+	text-align: center;
+	font-size: 16px;
+}
+.main {
+	position: relative;
+	margin: 0 auto;
+}

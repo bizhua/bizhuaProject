@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+  <meta name="keywords" content="{$seo_keywords}" />
+  <meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <style>
+        .footer li.zhua i {
+            background: url(/themes/deerlive_mobile/Public/images/zhua_oncheck.png);
+            background-size: cover;
+        }
+        .footer li i.i1 {
+            background: url(/themes/deerlive_mobile/Public/images/bot1.png) 0 0px;
+            background-size: cover;
+        }
+        .cartcon .carttotle_up{
+            bottom: 8.2em;
+            background: none;
+            border-top: none;
+            line-height: 2em;
+            height: 2em;
+        }
+        .cartcon .carttotle .check {
+            margin: 1% 0 0 0;
+        }
+        .m_15{
+          margin:0 15px 0 0;
+        }
+    </style>
+</head>
+
+<body >
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">战利品</p>
+</header>
+<section class="tips">
+  <p><span class="red">重要提示：</span>测试期所有娃娃包邮，不收取任何费用。</p>
+</section>
+<section class="cartcon">
+
+   <ul id="show_list">
+
+   </ul>
+   <div class="carttotle carttotle_up">
+         <div class="check_all check fl "><span></span></div>
+          <p class="fl m_15" onclick="check_all()">全选</p>
+<!--          <div class="duihuan_all check fl checked"><span></span></div>
+         <p class="fl m_15" onclick="duihuan_all()">兑换金币</p> -->
+         <div class="youji_all check fl"><span></span></div>
+          <p class="fl m_15" onclick="youji_all()">申请邮寄</p>
+   </div>
+
+
+   <div class="carttotle">
+      <a href="javascript:;" class="fr button1"  onclick="post_order()">提交</a>
+<!--       <p class="price fl apply_post_duihuan">娃娃数量 : <span class="all_num_duihuan">0</span>&nbsp;&nbsp;&nbsp;价值CPS共计: <span class="post_money_duihuan">0</span></p> -->
+      <p class="price fl apply_post" style="display:none;">娃娃数量 : <span class="all_num">0</span>&nbsp;&nbsp;&nbsp;运费(金币): <span class="post_money">0</span></p>
+   </div>
+</section>
+<tc_include file="Public:footer" />
+
+
+<script type="text/javascript">
+var chose_type = 1;
+param={};
+param.token = TOKEN;
+param.limit_begin = 0;
+param.limit_num = 50;
+doPost('/Api/SiSi/getNotTakenWawaByUid',param,function(data){
+    if (data.code == 200) {
+      for (var i = 0; i < data.info.length; i++) {
+          $("#show_list").append('<li><div class="check fl"><input type="hidden" name="doll_id" value=" ' +  data.info[i].doll_id + ' "><input type="hidden" name="exchange_price" value=" ' +  data.info[i].exchange_price + ' "><span></span></div><div class="tcimg fl"><img src=" ' +  data.info[i].img + ' " style="width:100%;height:70px;"></div><div class="tcword fr"><p class="tit red"> ' +  data.info[i].name + ' </p><p class="time"> ' +  data.info[i].play_time + ' </p><p class="num red">价值cps :  ' +  data.info[i].exchange_price + ' </p></div></li>');
+      };
+    };
+});
+
+$("#show_list").on('click','li',function(event) {
+    if ($(this).find(".check").hasClass("checked")){
+      $(this).find(".check").removeClass("checked");
+      $(".check_all").removeClass("checked");
+    }else{
+      $(this).find(".check").addClass("checked");
+    }
+    change_order_info();
+});
+
+function check_all(){
+    if ($(".check_all").hasClass("checked")){
+      $(".check_all").removeClass("checked");
+      $("#show_list li").find(".check").removeClass("checked");
+    }else{
+      $(".check_all").addClass("checked");
+      $("#show_list li").find(".check").addClass("checked");
+    }
+    change_order_info();
+}
+
+function duihuan_all(){
+      $(".youji_all").removeClass("checked");
+      $(".duihuan_all").addClass("checked");
+
+      $(".apply_post_duihuan").show();
+      $(".apply_post").hide();
+      change_order_info();
+}
+
+function youji_all(){
+      $(".duihuan_all").removeClass("checked");
+      $(".youji_all").addClass("checked");
+
+      $(".apply_post").show();
+      $(".apply_post_duihuan").hide();
+      change_order_info();
+}
+
+
+
+function change_order_info(){
+    if ($(".youji_all").hasClass("checked")){
+              $(".duihuan_all").removeClass("checked");
+              $(".youji_all").addClass("checked");
+              chose_type = 1;
+
+              var all_num = $("#show_list li .checked").length;
+              $(".all_num").html(all_num);
+              if (all_num == 1) {
+                $(".post_money").html(600);
+              }else{
+                $(".post_money").html(0);
+              }
+    }else{
+            $(".youji_all").removeClass("checked");
+            $(".duihuan_all").addClass("checked");
+            chose_type = 0;
+
+              var all_num = $("#show_list li .checked").length;
+              $(".all_num_duihuan").html(all_num);
+
+              var all_duihuan_num = 0;
+              var txt = $('#show_list li .checked').find("input[name='exchange_price']");
+              for (var i = 0; i < txt.length; i++) {
+                  all_duihuan_num = all_duihuan_num + parseInt(txt.eq(i).val());
+              }
+              $(".post_money_duihuan").html(all_duihuan_num);
+    }
+
+}
+
+function post_order(){
+    var all_num = $("#show_list li .checked").length;
+    if (all_num < 1) {
+      alert("您还没选择娃娃");
+      return;
+    };
+
+    var numArr = [];
+    var txt = $('#show_list li .checked').find("input[name='doll_id']");
+    for (var i = 0; i < txt.length; i++) {
+        numArr.push(txt.eq(i).val());
+    }
+    console.log(numArr);
+
+    param.doll_id = numArr.toString();
+    param.type = chose_type;
+    doPost('/Api/V8/applyPostWawa',param,function(data){
+        if (data.code == 200) {
+          alert('提交成功');
+          location.reload();
+        }else{
+          alert(data.descrp);
+        };
+    });
+
+}
+
+</script>
+</body>
+</html>

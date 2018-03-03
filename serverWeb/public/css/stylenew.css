@@ -1,0 +1,647 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+	margin: 0;
+	padding: 0
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+fieldset,iframe,img {
+	border: 0
+}
+
+.other_header {
+	height: 60px;
+	position: relative
+}
+
+.frame {
+	width: 960px;
+	margin: 0 auto;
+	position: relative
+}
+
+a {
+	text-decoration: none;
+	color: #666;
+	outline: 0
+}
+
+a:hover {
+	color: #666;
+	-webkit-transition: color .3s linear 0s;
+	-moz-transition: color .3s linear 0s;
+	-ms-transition: color .3s linear 0s
+}
+
+.other_header .headerbg {
+	width: 100%;
+	min-width: 1200px;
+	height: 60px;
+	background: #000;
+	opacity: .7;
+	filter: alpha(opacity=70);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1
+}
+
+.other_header .frame {
+	position: relative;
+	z-index: 5
+}
+
+.other_header .logo {
+	float: left;
+	width: 320px;
+	height: 50px;
+	margin: 0;
+	position: relative
+}
+
+.other_header .logo a.bg {
+	position: relative;
+	margin: 3px 0 0;
+	display: block;
+	width: 265px;
+	height: 49px;
+	text-indent: -9999em;
+	cursor: pointer;
+	background-repeat: no-repeat;
+}
+
+.other_header .logo a.bg i {
+	position: absolute;
+	width: 197px;
+	height: 49px;
+	top: 0;
+	left: 0;
+	zoom: 1
+}
+
+.other_header .logo a.todesk {
+	position: absolute;
+	top: 12px;
+	left: 180px;
+	color: #c4c4c4
+}
+
+.other_header .logo a.todesk:hover {
+}
+
+address,caption,cite,code,dfn,em,strong,th,var,i,b {
+	font-style: normal;
+	font-weight: 400
+}
+
+ol,ul {
+	list-style: none
+}
+
+caption,th {
+	text-align: left
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	color: #000;
+	font-weight: 400;
+	color: #666
+}
+
+body,button,input,select,textarea {
+	font-family: Microsoft YaHei,\5b8b\4f53,Arial,Verdana;
+	font-size: 12px
+}
+
+.clearboth {
+	clear: both;
+	font-size: 1px;
+	line-height: 1px;
+	height: 1px
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.clearfix {
+	display: inline-block
+}
+
+.clearfix {
+	display: block
+}
+
+article,aside,dialog,footer,header,section,footer,nav,figure,menu {
+	display: block
+}
+
+.header nav {
+	line-height: 60px
+}
+
+.header nav a,.header nav span {
+	color: #91918f;
+	font-size: 16px;
+	margin-left: 40px;
+	display: inline-block;
+	transition: background 430ms ease-in 0ms,color 430ms ease-in 0ms
+}
+
+.header nav a:hover,.header nav .current {
+	color: #fff
+}
+
+.fl {
+	float: left;
+	display: inline
+}
+
+.fr {
+	float: right;
+	display: inline
+}
+
+body {
+	background: #F3F3F3
+}
+
+.banner {
+	max-width: 1920px;
+	min-width: 1200px;
+	padding: 0;
+	margin: auto;
+	height: 640px;
+	background-repeat: no-repeat;
+	background: #292055;
+	background: url(../images/bg.jpg) no-repeat;
+}
+
+
+#zsp_cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .3;
+	filter: alpha(opacity=30);
+	z-index: 99;
+	display: none
+}
+
+#zsp_pop {
+	position: fixed;
+	font-size: 12px;
+	width: 452px;
+	height: 286px;
+	overflow: hidden;
+	border: 1px solid #898989;
+	top: 50%;
+	left: 50%;
+	margin-left: -226px;
+	margin-top: -220px;
+	z-index: 100;
+	padding: 0;
+	background: url();
+	display: none
+}
+
+#zsp_pop .close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 8px 10px;
+	width: 10px;
+	height: 10px;
+	cursor: pointer
+}
+
+#zsp_pop .close p {
+	width: 10px;
+	height: 10px;
+	display: block;
+	background-repeat: no-repeat;
+}
+
+#zsp_pop .know {
+	position: absolute;
+	bottom: 10px;
+	right: 18px;
+	width: 100px;
+	height: 40px;
+	cursor: pointer
+}
+
+#zsp_pop .link {
+	position: absolute;
+	bottom: 0;
+	left: 25px;
+	height: 30px;
+	font-weight: 900
+}
+
+#zsp_pop .link a {
+	color: #0097ff;
+	text-decoration: underline
+}
+
+.home {
+	width: 960px;
+	margin: 0 auto;
+	position: relative
+}
+
+.main {
+	width: 1200px;
+	height: 640px;
+	margin-left: -120px
+}
+
+.leftImg {
+	width: 525px;
+	height: 640px;
+	list-style: none;
+	margin: 0
+}
+
+.leftImg li {
+	float: left;
+	position: absolute;
+	filter: inherit;
+	/*background: url(../images/left.png) repeat;*/
+	display: none
+}
+
+.leftImg li:first-child {
+	display: block
+}
+
+.leftImg li img {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 525px;
+	height: 640px;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader (enabled=true)
+}
+
+.rightContent {
+	width: 675px
+}
+
+.topImg {
+	margin: 25px 40px 0 60px;
+	min-height: 173px
+}
+
+.qrcode {
+	width: 200px;
+	height: 230px;
+	margin: 0 auto
+}
+
+.qrcode img {
+	width: 200px;
+	height: 230px
+}
+
+.apkBtnBox {
+	display: block;
+	width: 450px;
+	margin: auto
+}
+
+.apkBtnBox>li {
+	display: block;
+	float: left;
+	margin: 40px 10px 0;
+	width: 200px;
+	height: 60px;
+	cursor: pointer;
+	position: relative
+}
+
+#androidBtn {
+	background-repeat: no-repeat;
+}
+
+#androidBtn:hover {
+	background-repeat: no-repeat;
+}
+
+#iosBtn {
+	background-repeat: no-repeat;
+}
+
+#iosBtn:hover {
+	background-repeat: no-repeat;
+}
+
+#allBtn {
+	background-repeat: no-repeat;
+}
+
+#allBtn:hover {
+	background-repeat: no-repeat;
+}
+
+.apkBtnBox>li .link {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%
+}
+
+.apkBtnBox>li .corner {
+	display: block;
+	position: absolute;
+	right: 0;
+	width: 47px;
+	height: 47px;
+	float: right;
+	z-index: 6666;
+	background-repeat: no-repeat;
+}
+
+.apkBtnBox>li .corner:hover {
+	background-repeat: no-repeat;
+}
+
+.apkBtnBox>li .detail {
+	display: none;
+	position: absolute;
+	width: 223px;
+	margin-left: -10px;
+	bottom: 60px;
+	min-height: 60px;
+	cursor: default
+}
+
+.apkBtnBox>li .showI {
+	display: block!important
+}
+
+.apkBtnBox>li .show {
+	display: block
+}
+
+.apkBtnBox>li .detail .version {
+	height: 57px;
+	color: #fff;
+	text-indent: 25px;
+	font-size: 16px;
+	line-height: 65px;
+	background-repeat: no-repeat;
+}
+
+.apkBtnBox>li .detail .list {
+	line-height: 25px;
+	padding: 5px 0;
+	padding-left: 20px;
+	background-repeat: repeat-y
+}
+
+.apkBtnBox>li .detail .list>li {
+}
+
+.apkBtnBox>li .detail .list>li i {
+	width: 18px;
+	height: 18px;
+	margin: 0 5px;
+	text-indent: 0;
+	text-align: center;
+	border-radius: 8px;
+	line-height: 18px;
+	background: #666;
+	color: #fff;
+	vertical-align: top;
+	display: inline-block
+}
+
+.apkBtnBox>li .detail .list>li span {
+	text-indent: 0;
+	font-size: 14px;
+	line-height: 18px;
+	color: #666;
+	display: inline-block;
+	max-width: 150px
+}
+
+.apkBtnBox>li .detail .foot {
+	height: 20px;
+	background-repeat: no-repeat;
+}
+
+._360DownLoad {
+	display: block;
+	width: 420px;
+	font-size: 12px;
+	margin: 30px auto 0
+}
+
+._360DownLoad .left {
+	height: 30px;
+	line-height: 30px;
+	margin-right: 4px;
+	color: #fff;
+	opacity: .6;
+	filter: alpha(opacity=60);
+	float: left
+}
+
+._360DownLoad .right {
+	float: left
+}
+
+._360DownLoad .right a {
+	display: block
+}
+
+.footer {
+	border-top: 1px solid #d8d8d8;
+	margin-top: 20px;
+	white-space: nowrap;
+	background: #f3f3f3;
+	clear: both
+}
+
+.footer .footerContent {
+	color: #8f8f8f;
+	margin: 0 auto;
+	padding: 24px 0 40px;
+	line-height: 24px;
+	width: 1000px;
+	overflow: hidden
+}
+
+.footer .footerLogo {
+	float: left;
+	margin-top: 15px
+}
+
+.footer .footerPDiv {
+	width: 580px;
+	float: left
+}
+
+.footer a {
+	color: #8F8F8F
+}
+
+.footer a:hover {
+	color: #3ca617
+}
+
+.footer span.footerSpanLeft {
+	float: left;
+	display: block;
+	width: 270px;
+	white-space: normal
+}
+
+.footer a.footerSpanA {
+	text-decoration: underline;
+	margin-right: 4px
+}
+
+.footer a.footerSpanA:hover {
+	text-decoration: none;
+	color: #8f8f8f
+}
+
+.footer p {
+	height: 20px;
+	line-height: 20px;
+	width: 580px;
+	float: left
+}
+
+.footer .footerEr {
+	float: left
+}
+
+.footer .footerEr img {
+	margin: 0 10px
+}
+
+.footer .policeUrl {
+	margin-left: 10px
+}
+
+.footer .policeUrl:hover {
+	text-decoration: none;
+	color: #8f8f8f
+}
+
+.footer .policeUrl .policeLogo {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	width: 20px;
+	height: 20px;
+	vertical-align: text-bottom;
+	background-repeat: no-repeat;
+}
+
+.apkBtnBox>li .detail .list {
+	background-position: 0px 0px
+}
+
+.apkBtnBox>li .detail .list {
+	background-image: url(http://s3.fx.kgimg.com/staticPub/images/sprite/css/download/mobileClient_y_5aead0a.png)
+}
+
+.index .download {
+	background-position: 0px 0px
+}
+
+#iosBtn:hover {
+	background-position: 0px -150px
+}
+
+#androidBtn {
+	background-position: -255px 0px
+}
+
+#androidBtn:hover {
+	background-position: -255px -80px
+}
+
+#iosBtn {
+	background-position: 0px -230px
+}
+
+
+#allBtn {
+	display:none;
+	background-position: 0 -56px
+}
+
+#allBtn:hover {
+	background-position: 0 -56px
+}
+
+.apkBtnBox>li .detail .version {
+	background-position: -220px -230px
+}
+
+.other_header .logo a.bg {
+	background-position: -255px -160px
+}
+
+.apkBtnBox>li .corner {
+	background-position: 0px -310px
+}
+
+.apkBtnBox>li .corner:hover {
+	background-position: -66px -310px
+}
+
+.apkBtnBox>li .detail .foot {
+	background-position: -132px -310px
+}
+
+.footer .policeUrl .policeLogo {
+	background-position: -375px -310px
+}
+
+#zsp_pop .close p {
+	background-position: -220px -150px
+}
+
+.index .download,#iosBtn:hover,#androidBtn,#androidBtn:hover,#iosBtn,#allBtn,.apkBtnBox>li .detail .version,.other_header .logo a.bg,.apkBtnBox>li .corner,.apkBtnBox>li .corner:hover,.apkBtnBox>li .detail .foot,.footer .policeUrl .policeLogo,#zsp_pop .close p {
+	background-image: url(../images/mobileClient.png)
+}
+
+@media screen and (max-width:680px){
+
+.other_header .headerbg{min-width:100%;}
+.banner{width:100%;min-width:100%;background-position:-500px;}
+.frame,.main,.home{width:auto;}
+.foottxt,._360DownLoad,.topImg,.qrcode,.fx_tips,.fx_loading,.footerLogo{display:none;}
+.footer .footerContent{width:100%;}
+.footer{margin-top:0;}
+.leftImg{width:auto;overflow:hidden;}
+.leftImg li img{margin:0 auto;display:block;}
+.footer .footerPDiv,.footer p,.leftImg{width:auto;clear:both;}
+#androidBtn,#iosBtn{display:none;}
+.rightContent{margin:0 auto;width:100%;}
+.leftImg{margin-top:-76px;}
+#leftImg{}
+.leftImg li img{display:none;}
+.leftImg{width:auto;}
+.apkBtnBox{width:218px;margin:0 auto;margin-top:500px;}
+.footer span.footerSpanLeft{float:none;}
+/*.main{background:url(../images/left2.png) center 30px no-repeat;margin-left:0;}*/
+#allBtn{display:block;}
+}

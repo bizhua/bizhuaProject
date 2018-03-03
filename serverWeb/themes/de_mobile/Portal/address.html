@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <style>
+p,div {
+     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+[contenteditable = "true"], input, textarea {
+    -webkit-user-select: auto!important;
+    -khtml-user-select: auto!important;
+    -moz-user-select: auto!important;
+    -ms-user-select: auto!important;
+    -o-user-select: auto!important;
+    user-select: auto!important;
+}
+    </style>
+</head>
+
+<body class="padding0">
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">我的配送地址</p>
+</header>
+<section class="address-con">
+ <ul>
+  <li><label class="fl">收货人</label><input id="delivery_name" class="fl" type="text" placeholder="请填写收货人姓名" value="{$userinfo.delivery_name}"/></li>
+  <li><label class="fl">联系电话</label><input id="delivery_mobile" class="fl" type="text" placeholder="请填写联系人电话" value="{$userinfo.delivery_mobile}" /></li>
+  <li><label class="fl">地址</label><input id="delivery_addr" class="fl" type="text" placeholder="请填写地址，街道、楼牌号等" value="{$userinfo.delivery_addr}" /></li>
+ </ul>
+  <button class="button" id="submit_addr">保存地址</button>
+</section>
+<script type="text/javascript">
+param={};
+param.token = TOKEN;
+$("#submit_addr").click(function(){    
+    param.delivery_name = $("#delivery_name").val();
+    param.delivery_mobile = $("#delivery_mobile").val();
+    param.delivery_addr = $("#delivery_addr").val();
+
+    if(!param.delivery_name){
+      alert("收货人不能为空");
+      return;
+    }
+
+    if(!param.delivery_mobile){
+      alert("联系电话不能为空");
+      return;
+    }
+
+    if(!param.delivery_addr){
+      alert("地址不能为空");
+      return;
+    }
+
+    if(!window.confirm('配送地址是邮寄战利品的重要信息，请确保其真实、有效、无误')){
+      return;
+    }
+
+    doPost('/Api/SiSi/change_userinfo',param,function(data){
+        if (data.code == 200) {
+          alert("修改成功");
+        };
+    });
+})
+
+
+
+
+</script>
+</body>
+</html>

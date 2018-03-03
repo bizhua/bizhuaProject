@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<title>{$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+</head>
+
+<body >
+<header class="header"> <a href="{:U('portal/index/user')}" class="back fl"><i class="fa fa-angle-left"></i></a>
+  <p class="title">设置</p>
+</header>
+ <section class="usercon">
+  <ul>
+  <a href="{:U('portal/index/help')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-1.png"></span><p>游戏帮助</p><i class="fa fr fa-angle-right"></i></li></a>
+  <a href="{:U('portal/index/my_code',array('qudao'=>$_COOKIE['qudao']))}"><li><span class="icon"><img src="__TMPL__Public/images/hy-2.png"></span><p>邀请码</p><i class="fa fr fa-angle-right"></i></li></a>
+  <a href="{:U('portal/index/input_code')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-3.png"></span><p>输入邀请码</p><i class="fa fr fa-angle-right"></i></li></a>
+  <a href="{:U('portal/index/about_us')}"><li><span class="icon"><img src="__TMPL__Public/images/hy-3.png"></span><p>关于我们</p><i class="fa fr fa-angle-right"></i></li></a>
+  </ul>
+ </section>
+</body>
+</html>
